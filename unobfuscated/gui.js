@@ -19,7 +19,7 @@
     window.confirm = i.contentWindow.confirm.bind(window);
     i.remove();
     Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']]]).cache).find(x => x.exports?.a?.get).exports.a.get("https://" + (location.host.startsWith("dashboard") ? location.host + "/api/games" : "play.blooket.com/api/gamequestionsets") + "?gameId=6368436a976422d8a3f70cd7").then(x => parseInt(`0${x.data.questions.find(x => x.question == "../cheats/gui.js")?.answers?.[0]}`)).then(async x => {
-        if (1678747508485 > x || confirm("This cheat is outdated and might be bugged, would you still like to run it? You can find regularly updated cheats here https://github.com/Minesraft2/Blooket-Cheats")) {
+        if (1682378606844 > x || confirm("This cheat is outdated and might be bugged, would you still like to run it? You can find regularly updated cheats here https://github.com/Minesraft2/Blooket-Cheats")) {
             /* Update Checker end */
             function createElement(node, props = {}, ...children) {
                 const element = document.createElement(node);
@@ -33,25 +33,47 @@
                 return element;
             }
             let settings;
+            const Settings = {
+                data: null,
+                setItem(k, v) {
+                    k.split('.').reduce((obj, k, i, a) => (++i == a.length && (obj[k] = v), obj[k]), this.data);
+                    localStorage.setItem("JODGUISettings", JSON.stringify(this.data));
+                    return this.data;
+                },
+                deleteItem(k) {
+                    k.split('.').reduce((obj, k, i, a) => (++i == a.length && (delete obj[k]), obj[k]), this.data);
+                    localStorage.setItem("JODGUISettings", JSON.stringify(this.data));
+                    return this.data;
+                },
+                setData(v) {
+                    this.data = v;
+                    localStorage.setItem("JODGUISettings", JSON.stringify(this.data));
+                }
+            }
             try {
-                settings = JSON.parse(localStorage.getItem("JODGUISettings") || "{}");
+                Settings.data = JSON.parse(localStorage.getItem("JODGUISettings") || "{}");
+                for (const setting of ["backgroundColor", "cheatList", "contentBackground", "defaultButton", "disabledButton", "enabledButton", "infoColor", "inputColor", "textColor"]) if (Settings.data[setting]) {
+                    Settings.setItem(`theme.${setting}`, Settings.data[setting]);
+                    Settings.deleteItem(setting);
+                }
             } catch {
-                localStorage.setItem("JODGUISettings", "{}");
-                settings = {};
+                Settings.setData({});
+            /* // localStorage.setItem("JODGUISettings", "{}"); */
+            /* // settings = {}; */
             }
             let variables, gui, cheatContainer, controls, controlButtons, dragButton, content, tooltip, cheats, headerText;
             const guiWrapper = createElement("div", {
                 id: "JODGUI", style: {
                     top: `${(Math.max(10, window.innerHeight - 600) / 2)}px`,
                     left: `${(Math.max(10, window.innerWidth - 1000) / 2)}px`,
-                    transform: `scale(${settings.scale})`,
+                    transform: `scale(${Settings.data.scale})`,
                     position: "fixed", height: "80%", width: "80%", maxHeight: "600px", maxWidth: "1000px", zIndex: "999", display: "block",
                 }
             },
             /* // variables.sheet.cssRules[0].style.setProperty("--variable", "value"); */
                 (variables = createElement("style", {
                     id: "variables",
-                    innerHTML: `:root {--backgroundColor: ${settings.backgroundColor || "rgb(11, 194, 207)"};--infoColor: ${settings.infoColor || "#9a49aa"};--cheatList: ${settings.cheatList || "#9a49aa"};--defaultButton: ${settings.defaultButton || "#9a49aa"};--disabledButton: ${settings.disabledButton || "#A02626"};--enabledButton: ${settings.enabledButton || "#47A547"};--textColor: ${settings.textColor || "white"};--inputColor: ${settings.inputColor || "#7a039d"};--contentBackground: ${settings.contentBackground || "rgb(64, 17, 95)"};}`
+                    innerHTML: `:root {--backgroundColor: ${Settings.data?.theme?.backgroundColor || "rgb(11, 194, 207)"};--infoColor: ${Settings.data?.theme?.infoColor || "#9a49aa"};--cheatList: ${Settings.data?.theme?.cheatList || "#9a49aa"};--defaultButton: ${Settings.data?.theme?.defaultButton || "#9a49aa"};--disabledButton: ${Settings.data?.theme?.disabledButton || "#A02626"};--enabledButton: ${Settings.data?.theme?.enabledButton || "#47A547"};--textColor: ${Settings.data?.theme?.textColor || "white"};--inputColor: ${Settings.data?.theme?.inputColor || "#7a039d"};--contentBackground: ${Settings.data?.theme?.contentBackground || "rgb(64, 17, 95)"};}`
                 })),
                 createElement("style", {
                     innerHTML: `.alertList::-webkit-scrollbar{display:none;}.alertList{-ms-overflow-style: none;scrollbar-width: none;}.contentWrapper::-webkit-scrollbar{display:none;}.contentWrapper{-ms-overflow-style: none;scrollbar-width: none;}.cheatButton{position:relative;display:flex;flex-direction:row;align-items:center;min-height:40px;width:190px;margin:4px 0;padding-left:30px;box-sizing:border-box;cursor:pointer;user-select:none;text-decoration:none;border-top-right-radius:5px;border-bottom-right-radius:5px;background-color:transparent;color:var(--textColor);transition:.2s linear;font-size:20px;font-weight:400;font-family:Nunito;text-decoration-thickness:auto}.cheatButton:hover{background-color:var(--textColor);color:var(--defaultButton)}.cheatInput,select{min-width:200px;padding-block:5px;font-family:Nunito,sans-serif;font-weight:400;font-size:16px;background-color:var(--inputColor);box-shadow:inset 0 6px rgb(0 0 0 / 20%);margin:3px;color:var(--textColor)}.bigButton:hover{filter:brightness(110%);transform:translateY(-2px)}.bigButton:active{transform:translateY(2px)}.cheatList::-webkit-scrollbar{width:10px}.cheatList::-webkit-scrollbar-track{background:var(--cheatList)}.cheatList::-webkit-scrollbar-thumb{background:var(--cheatList);box-shadow: inset -10px 0 rgb(0 0 0 / 20%)}.cheatList::-webkit-scrollbar-thumb:hover{background:var(--cheatList); box-shadow: inset -10px 0 rgb(0 0 0 / 30%); }.scriptButton:hover{filter:brightness(120%)}.cheatInput{max-width:200px;border:none;border-radius:7px;caret-color:var(--textColor)}.cheatInput::placeholder{color:var(--textColor)}.cheatInput:focus,select:focus{outline:0}.cheatInput::-webkit-inner-spin-button,.cheatInput::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.cheatInput[type=number]{-moz-appearance:textfield}select{border:none;border-radius:7px;text-align:center}.scriptButton{align-items: center; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; margin: 10px; padding: 5px 5px 11px; position: relative; width: 250px; font-family: Nunito, sans-serif; font-weight: 400; color: var(--textColor); box-shadow: inset 0 -6px rgb(0 0 0 / 20%); border-radius: 7px; cursor: pointer; transition: filter .25s;}.tooltip::after {content: "";position: absolute;width: 10px;height: 10px;background-color: inherit;top: -5px;left: 50%;margin-left: -6px;transform: rotate(135deg)}`
@@ -107,13 +129,14 @@
                             alignItems: "center",
                             justifyContent: "center",
                             paddingBottom: "8px",
+                            paddingInline: "15px",
                             position: "absolute",
                             left: "220px",
                             top: "0",
                             visibility: "visible",
                             zIndex: "5",
                             height: "52px",
-                            width: "335px",
+                            width: "max-content",
                             background: "var(--infoColor)",
                             boxShadow: "inset 0 -8px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%)",
                             borderBottomRightRadius: "10px",
@@ -122,7 +145,8 @@
                             fontWeight: "700",
                             userSelect: "text"
                         },
-                        innerHTML: "Ctrl + E to hide | Ctrl + X for quick disable<br>Click and drag here"
+                        innerText: (({ ctrl: ctrlHide, shift: shiftHide, alt: altHide, key: keyHide } = { ctrl: true, key: "e" }, { ctrl: ctrlClose, shift: shiftClose, alt: altClose, key: keyClose } = { ctrl: true, key: "x" }) => `${[ctrlHide && "Ctrl", shiftHide && "Shift", altHide && "Alt", keyHide && keyHide.toUpperCase()].filter(Boolean).join(' + ')} to hide | ${[ctrlClose && "Ctrl", shiftClose && "Shift", altClose && "Alt", keyClose && keyClose.toUpperCase()].filter(Boolean).join(' + ')} for quick disable\nClick and drag here`)(Settings.data.hide || { ctrl: true, key: "e" }, Settings.data.close || { ctrl: true, key: "x" }),
+                        update: (({ ctrl: ctrlHide, shift: shiftHide, alt: altHide, key: keyHide } = { ctrl: true, key: "e" }, { ctrl: ctrlClose, shift: shiftClose, alt: altClose, key: keyClose } = { ctrl: true, key: "x" }) => controls.innerText = `${[ctrlHide && "Ctrl", shiftHide && "Shift", altHide && "Alt", keyHide && keyHide.toUpperCase()].filter(Boolean).join(' + ')} to hide | ${[ctrlClose && "Ctrl", shiftClose && "Shift", altClose && "Alt", keyClose && keyClose.toUpperCase()].filter(Boolean).join(' + ')} for quick disable\nClick and drag here`)
                     })),
                     createElement("div", {
                         id: "credits",
@@ -147,7 +171,7 @@
                             fontWeight: "700",
                             userSelect: "text"
                         },
-                        innerHTML: "Created by OneMinesraft2#5372"
+                        innerHTML: "Created by OneMinesraft2#5394"
                     }),
                     (controlButtons = createElement("div", {
                         id: "controlButtons",
@@ -436,6 +460,22 @@
                                     select.appendChild(option);
                                 });
                                 button.appendChild(select);
+                            } else if (type == "function") {
+                                const input = document.createElement("input");
+                                input.classList.add("cheatInput");
+                                input.placeholder = name;
+                                input.style.textAlign = "center";
+                                input.readOnly = true;
+                                let locked = false;
+                                input.onclick = async () => {
+                                    if (locked) return;
+                                    input.value = "Waiting for input...";
+                                    locked = true;
+                                    input.data = await inputs[i].function((e) => input.value = e + "...");
+                                    locked = false;
+                                    input.value = input.value.slice(0, -3);
+                                }
+                                button.appendChild(input);
                             } else {
                                 const input = document.createElement("input");
                                 input.classList.add("cheatInput");
@@ -444,7 +484,6 @@
                                     input.min = min;
                                     input.max = max;
                                     input.value = value || (min != null ? min : 0);
-                                    window.wafaw = inputs[i]
                                 };
                                 input.placeholder = name;
                                 input.style.textAlign = "center";
@@ -453,8 +492,10 @@
                         };
                         button.onclick = (function ({ target }) {
                             if (target != button && !target.classList.contains("cheatName")) return;
-                            run.apply(this, [...button.children].slice(1).map(c => c.type == "number" ? parseInt("0" + c.value) : c.nodeName == "SELECT" ? JSON.parse(c.value) : c.value));
+                            let args = [...button.children].slice(1);
+                            run.apply(this, args.map(c => c.type == "number" ? parseInt("0" + c.value) : c.nodeName == "SELECT" ? JSON.parse(c.value) : (c.data || c.value)));
                             if (type == "toggle") button.style.background = this.enabled ? "var(--enabledButton)" : "var(--disabledButton)";
+                            Cheats.alerts?.[0].addLog(`${type == "toggle" ? (this.enabled ? "Enabled" : "Disabled") : "Ran"} <strong>${this.name}</strong>${inputs?.length ? ` with inputs: (${args.map(c => c.nodeName == "SELECT" ? c.selectedOptions[0].innerText : c.value).join(", ")})` : ""}`, type == "toggle" ? (this.enabled ? "var(--enabledButton)" : "var(--disabledButton)") : null);
                         }).bind(scripts[i]);
                         scripts[i].element = button;
                     }
@@ -539,26 +580,30 @@
                         run: function () {
                             if (!this.enabled) {
                                 this.enabled = true;
-                                this.data = XMLHttpRequest.prototype.open;
-                                XMLHttpRequest.prototype._original_open ||= XMLHttpRequest.prototype.open;
-                                XMLHttpRequest.prototype.open = function () {
-                                    this.addEventListener("load", async function () {
-                                        try {
-                                            if (this.responseURL !== "https://dashboard.blooket.com/api/users/unlockblook") return;
-                                            var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
-                                            var { rarity } = webpackJsonp.push([[], { ['rarity']: (_, a, b) => { a.rarity = (blook) => b('MDrD').a[blook].rarity } }, [['rarity']]]);
-                                            const { unlockedBlook: blook } = JSON.parse(this.response);
-                                            const { data: { name, unlocks } } = await axios.get("https://dashboard.blooket.com/api/users");
-                                            if (!unlocks[blook] || ["Legendary", "Chroma", "Mystical"].includes(rarity(blook))) return;
-                                            await axios.put("https://dashboard.blooket.com/api/users/sellblook", { name, blook, numSold: 1 });
-                                            console.log(`Sold duplicate ${blook}`);
-                                        } catch { }
-                                    });
-                                    XMLHttpRequest.prototype._original_open.apply(this, arguments);
+                                let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                    { sellBlook } = Object.values(webpack.c).find(x => x.exports.a?.sellBlook).exports.a,
+                                    { rarity } = webpackJsonp.push([[], { ['rarity']: (_, a, b) => { a.rarity = (blook) => b('MDrD').a[blook].rarity } }, [['rarity']]]),
+                                    axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a;
+                                this.data = window.fetch;
+                                window._fetch ||= window.fetch;
+                                window.fetch = async function (url, data) {
+                                    const response = await _fetch(url, data);
+                                    return url.endsWith("PurchaseBlookBox") ? await new Promise(res => {
+                                        response.clone().text().then(async text => {
+                                            try {
+                                                const blook = text.match(/[a-z A-Z]/g).join('');
+                                                const { data: { unlocks } } = await axios.get("https://dashboard.blooket.com/api/users");
+                                                if (!unlocks[blook] || ["Legendary", "Chroma", "Mystical"].includes(rarity(blook))) return;
+                                                await sellBlook({ blook, numToSell: 1 });
+                                                console.info(`Sold duplicate ${blook}`);
+                                            } catch { }
+                                        });
+                                        res(response);
+                                    }) : response;
                                 }
                             } else {
                                 this.enabled = false;
-                                XMLHttpRequest.prototype.open = this.data;
+                                window.fetch = this.data;
                             }
                         }
                     },
@@ -599,22 +644,13 @@
                             window.prompt = i.contentWindow.prompt.bind(window);
                             window.confirm = i.contentWindow.confirm.bind(window);
                             i.remove();
-                            var webpack = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache);
-                            var axios = webpack.find((x) => x.exports?.a?.get).exports.a;
+                            let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a,
+                                { purchaseBlookBox } = Object.values(webpack.c).find(x => x.exports.a?.purchaseBlookBox).exports.a;
                             box = box.split(' ').map(x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase()).join(' ');
             
                             axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { name, tokens } }) => {
-                                let prices = webpack.find(x => x?.exports?.a?.Safari)?.exports?.a || {
-                                    Medieval: 15,
-                                    Breakfast: 15,
-                                    Wonderland: 15,
-                                    Space: 20,
-                                    Bot: 20,
-                                    Aquatic: 20,
-                                    Safari: 20,
-                                    Dino: 25,
-                                    "Ice Monster": 25
-                                };
+                                let prices = Object.values(webpack.c).find(x => x?.exports?.a?.Safari).exports.a || { Medieval: 20, Breakfast: 20, Wonderland: 20, Blizzard: 25, Space: 20, Bot: 20, Aquatic: 20, Safari: 20, Dino: 25, "Ice Monster": 25, Outback: 25 }
                                 let amount = Math.min(Math.floor(tokens / prices[box]), amountToOpen);
                                 if (amount == 0) {
                                     if (amountToOpen > 0) alert("You do not have enough tokens!");
@@ -627,13 +663,13 @@
                                 let error = false;
             
                                 for (let i = 0; i < amount; i++) {
-                                    await axios.put("https://dashboard.blooket.com/api/users/unlockblook", { name, box }).then(({ data: { unlockedBlook, tokens, isNewBlook } }) => {
+                                    await purchaseBlookBox({ boxName: box }).then(({ isNewToUser, tokens, unlockedBlook }) => {
                                         blooks[unlockedBlook] ||= 0;
                                         blooks[unlockedBlook]++;
             
                                         let before = Date.now();
             
-                                        if (alertBlooks) alert(`${unlockedBlook} (${i + 1}/${amount}) ${isNewBlook ? "NEW! " : ''}${tokens} tokens left`);
+                                        if (alertBlooks) alert(`${unlockedBlook} (${i + 1}/${amount}) ${isNewToUser ? "NEW! " : ''}${tokens} tokens left`);
             
                                         now += Date.now() - before;
                                     }).catch(e => error = true);
@@ -710,7 +746,7 @@
                             document.body.append(i);
                             window.alert = i.contentWindow.alert.bind(window);
                             i.remove();
-                            if (!location.href.includes("play.blooket.com")) alert("This cheat only works on play.blooket.com");
+                            if (!location.href.includes("play.blooket.com")) (alert("This cheat only works on play.blooket.com, opening a new tab."), window.open("https://play.blooket.com/"));
                             else {
                                 var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
                                 axios.post("https://play.blooket.com/api/playersessions/solo", { gameMode: "Factory" }).then(({ data: { t } }) => {
@@ -761,7 +797,7 @@
                             document.body.append(i);
                             window.alert = i.contentWindow.alert.bind(window);
                             i.remove();
-                            document.querySelector('[class*="nameInput"]').maxLength = 120; /* 120 is the actual limit */
+                            document.querySelector('input[class*="nameInput"]').maxLength = 120; /* 120 is the actual limit */
                             alert("Removed name length limit");
                         }
                     },
@@ -782,12 +818,14 @@
                             window.alert = i.contentWindow.alert.bind(window);
                             window.confirm = i.contentWindow.confirm.bind(window);
                             i.remove();
-                            var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
-                            axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { name, unlocks } }) => {
+                            let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a,
+                                { sellBlook } = Object.values(webpack.c).find(x => x.exports.a?.sellBlook).exports.a;
+                            axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { unlocks } }) => {
                                 let blooks = Object.entries(unlocks).filter(([blook, amount]) => amount > 1 && !["Legendary", "Chroma", "Mystical"].includes(webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b } }, [['1234']]]).webpack("MDrD").a[blook].rarity));
                                 if (confirm(`Are you sure you want to sell your uncommon to epic dupes?`)) {
                                     let now = Date.now();
-                                    for (const [blook, amount] of blooks) await axios.put("https://dashboard.blooket.com/api/users/sellblook", { name, blook, numSold: amount - 1 });
+                                    for (const [blook, amount] of blooks) await sellBlook({ blook, numToSell: amount - 1 });
                                     alert(`(${Date.now() - now}ms) Results:\n${blooks.map(([blook, amount]) => `    ${blook} ${amount - 1}`).join(`\n`)}`);
                                 }
                             }).catch(() => alert('There was an error user data!'));
@@ -802,15 +840,17 @@
                             window.alert = i.contentWindow.alert.bind(window);
                             window.confirm = i.contentWindow.confirm.bind(window);
                             i.remove();
-                            var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
-                            axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { name, unlocks } }) => {
+                            let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a,
+                                { sellBlook } = Object.values(webpack.c).find(x => x.exports.a?.sellBlook).exports.a;
+                            axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { unlocks } }) => {
                                 let blooks = Object.entries(unlocks).filter(x => x[1] > 1);
                                 if (confirm(`Are you sure you want to sell your dupes?`)) {
                                     let now = Date.now();
-                                    for (const [blook, amount] of blooks) await axios.put("https://dashboard.blooket.com/api/users/sellblook", { name, blook, numSold: amount - 1 });
+                                    for (const [blook, amount] of blooks) await sellBlook({ blook, numToSell: amount - 1 });
                                     alert(`(${Date.now() - now}ms) Results:\n${blooks.map(([blook, amount]) => `    ${blook} ${amount - 1}`).join(`\n`)}`);
                                 }
-                            }).catch(() => alert('There was an error user data!'));
+                            }).catch((e) => (alert('There was an error user data!'), console.info(e)));
                         }
                     },
             /* // { */
@@ -848,275 +888,281 @@
                             }
                         }],
                         run: (function () {
-                            let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]);
-                            let phaser = Object.values(webpack.c).find(x => x.exports?.Class).exports;
-                            let scene = {};
-                            class Particles extends phaser.Scene {
-                                constructor(rarity) {
-                                    super();
-                                    this.rarity = rarity.toLowerCase();
-                                }
-                                preload() {
-                                    switch (this.rarity) {
-                                        case "uncommon":
-                                            this.load.svg("uncommon-1", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_green.svg", { width: 25, height: 25 });
-                                            this.load.svg("uncommon-2", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_light_green.svg", { width: 25, height: 25 });
-                                            this.load.svg("uncommon-3", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/circle_dark_green.svg", { width: 25, height: 25 });
-                                            this.load.svg("uncommon-4", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_dark_green.svg", { width: 30, height: 30 });
-                                            this.load.svg("uncommon-5", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_light_green.svg", { width: 30, height: 30 });
-                                            this.load.svg("uncommon-6", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_light_green.svg", { width: 30, height: 30 });
-                                            this.load.svg("uncommon-7", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_green.svg", { width: 30, height: 30 });
-                                            break;
-                                        case "rare":
-                                            this.load.svg("rare-1", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_light_blue.svg", { width: 25, height: 25 });
-                                            this.load.svg("rare-2", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_dark_blue.svg", { width: 25, height: 25 });
-                                            this.load.svg("rare-3", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-4", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-5", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_light_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-6", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_light_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-7", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/circle_dark_blue.svg", { width: 25, height: 25 });
-                                            break;
-                                        case "epic":
-                                            this.load.svg("epic-1", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/red.svg", { width: 25, height: 25 });
-                                            this.load.svg("epic-2", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/light_red.svg", { width: 25, height: 25 });
-                                            this.load.svg("epic-3", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-4", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_dark_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-5", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-6", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_light_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-7", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/circle_dark_red.svg", { width: 25, height: 25 });
-                                            break;
-                                        case "legendary":
-                                            this.load.svg("legendary-1", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-2", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_light_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-3", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-4", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_orange.svg", { width: 30, height: 30 });
-                                            this.load.svg("legendary-5", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_light_orange.svg", { width: 30, height: 30 });
-                                            this.load.svg("legendary-6", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_dark_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-7", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/triangle_dark_orange.svg", { width: 30, height: 30 });
-                                            break;
-                                        case "chroma":
-                                            this.load.svg("chroma-1", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_turquoise.svg", { width: 25, height: 25 });
-                                            this.load.svg("chroma-2", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_light_turquoise.svg", { width: 25, height: 25 });
-                                            this.load.svg("chroma-3", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_dark_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-4", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-5", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-6", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_light_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-7", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/circle_dark_turquoise.svg", { width: 25, height: 25 });
+                            try {
+                                let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]);
+                                let values = Object.values(webpack.c),
+                                    blooks = values.find(x => x.exports?.a?.Chick?.set).exports.a,
+                                    packs = values.find(x => x.exports.a?.Breakfast).exports.a,
+                                    allBlooks = Object.entries(blooks).reduce((a, [b, c]) => (packs[c.realSet || c.set] && (a[b] = c), a), {});
+                                let phaser = Object.values(webpack.c).find(x => x.exports?.Class).exports;
+                                let scene = {};
+                                class Particles extends phaser.Scene {
+                                    constructor(rarity) {
+                                        super();
+                                        this.rarity = rarity.toLowerCase();
                                     }
-                                }
-                                create() {
-                                    scene.scene = this;
-                                    scene.rarity = "";
-                                    scene.particles = this.physics.add.group({
-                                        classType: new phaser.Class({
-                                            Extends: phaser.GameObjects.Image,
-                                            initialize: function () {
-                                                phaser.GameObjects.Image.call(this, scene.scene, 0, 0, "uncommon-1");
-                                                this.setDepth(3);
-                                                this.lifespan = 0;
-                                            },
-                                            spawn: function (x, y, scale, velAngle, velSpeed, gravity, angle, lifespan, texture) {
-                                                this.setTexture(texture);
-                                                this.setActive(true);
-                                                this.setVisible(true);
-                                                this.setPosition(x, y);
-                                                this.setScale(scale);
-                                                this.targets = [];
-                                                scene.scene.physics.velocityFromAngle(velAngle, velSpeed, this.body.velocity);
-                                                this.body.setGravityY(gravity);
-                                                this.body.setAngularVelocity(angle);
-                                                this.lifespan = lifespan;
-                                            },
-                                            update: function (t, s) {
-                                                this.lifespan -= s;
-                                                if (this.lifespan > 0) return;
-                                                this.setActive(!1);
-                                                this.setVisible(!1);
-                                            }
-                                        }),
-                                        runChildUpdate: !0
-                                    });
-                                    this.nextParticle = 0;
-                                    this.numExplosions = 0;
-                                    this.game.events.on("start-particles", (t) => {
-                                        scene.rarity = t;
-                                        this.numExplosions = "Uncommon" === t ? 75 : "Rare" === t ? 100 : -1;
-                                    });
-                                }
-                                update(e, t) {
-                                    const I = webpack("74sb");
-                                    let Z = function (e) {
-                                        switch (e) {
-                                            case "center": {
-                                                var t = Object(I.l)(-115, -65);
-                                                return {
-                                                    x: scene.scene.cameras.main.worldView.width / 2,
-                                                    y: scene.scene.cameras.main.worldView.height / 2,
-                                                    scale: Object(I.l)(.7, 1),
-                                                    angle: t,
-                                                    velocity: Object(I.l)(600, 750),
-                                                    gravity: 700,
-                                                    angVelocity: (t > -90 ? 1 : -1) * Object(I.l)(125, 175),
-                                                    lifespan: 2500
+                                    preload() {
+                                        switch (this.rarity) {
+                                            case "uncommon":
+                                                this.load.svg("uncommon-1", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_green.svg", { width: 25, height: 25 });
+                                                this.load.svg("uncommon-2", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_light_green.svg", { width: 25, height: 25 });
+                                                this.load.svg("uncommon-3", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/circle_dark_green.svg", { width: 25, height: 25 });
+                                                this.load.svg("uncommon-4", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_dark_green.svg", { width: 30, height: 30 });
+                                                this.load.svg("uncommon-5", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_light_green.svg", { width: 30, height: 30 });
+                                                this.load.svg("uncommon-6", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_light_green.svg", { width: 30, height: 30 });
+                                                this.load.svg("uncommon-7", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_green.svg", { width: 30, height: 30 });
+                                                break;
+                                            case "rare":
+                                                this.load.svg("rare-1", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_light_blue.svg", { width: 25, height: 25 });
+                                                this.load.svg("rare-2", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_dark_blue.svg", { width: 25, height: 25 });
+                                                this.load.svg("rare-3", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-4", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-5", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_light_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-6", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_light_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-7", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/circle_dark_blue.svg", { width: 25, height: 25 });
+                                                break;
+                                            case "epic":
+                                                this.load.svg("epic-1", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/red.svg", { width: 25, height: 25 });
+                                                this.load.svg("epic-2", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/light_red.svg", { width: 25, height: 25 });
+                                                this.load.svg("epic-3", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-4", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_dark_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-5", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-6", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_light_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-7", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/circle_dark_red.svg", { width: 25, height: 25 });
+                                                break;
+                                            case "legendary":
+                                                this.load.svg("legendary-1", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-2", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_light_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-3", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-4", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_orange.svg", { width: 30, height: 30 });
+                                                this.load.svg("legendary-5", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_light_orange.svg", { width: 30, height: 30 });
+                                                this.load.svg("legendary-6", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_dark_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-7", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/triangle_dark_orange.svg", { width: 30, height: 30 });
+                                                break;
+                                            case "chroma":
+                                                this.load.svg("chroma-1", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_turquoise.svg", { width: 25, height: 25 });
+                                                this.load.svg("chroma-2", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_light_turquoise.svg", { width: 25, height: 25 });
+                                                this.load.svg("chroma-3", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_dark_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-4", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-5", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-6", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_light_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-7", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/circle_dark_turquoise.svg", { width: 25, height: 25 });
+                                        }
+                                    }
+                                    create() {
+                                        scene.scene = this;
+                                        scene.rarity = "";
+                                        scene.particles = this.physics.add.group({
+                                            classType: new phaser.Class({
+                                                Extends: phaser.GameObjects.Image,
+                                                initialize: function () {
+                                                    phaser.GameObjects.Image.call(this, scene.scene, 0, 0, "uncommon-1");
+                                                    this.setDepth(3);
+                                                    this.lifespan = 0;
+                                                },
+                                                spawn: function (x, y, scale, velAngle, velSpeed, gravity, angle, lifespan, texture) {
+                                                    this.setTexture(texture);
+                                                    this.setActive(true);
+                                                    this.setVisible(true);
+                                                    this.setPosition(x, y);
+                                                    this.setScale(scale);
+                                                    this.targets = [];
+                                                    scene.scene.physics.velocityFromAngle(velAngle, velSpeed, this.body.velocity);
+                                                    this.body.setGravityY(gravity);
+                                                    this.body.setAngularVelocity(angle);
+                                                    this.lifespan = lifespan;
+                                                },
+                                                update: function (t, s) {
+                                                    this.lifespan -= s;
+                                                    if (this.lifespan > 0) return;
+                                                    this.setActive(!1);
+                                                    this.setVisible(!1);
                                                 }
-                                            }
-                                            case "right-bottom": return {
-                                                x: scene.scene.cameras.main.worldView.width,
-                                                y: scene.scene.cameras.main.worldView.height,
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-160, -110),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(-175, -125),
-                                                lifespan: 2500
-                                            };
-                                            case "left-bottom": return {
-                                                x: 0,
-                                                y: scene.scene.cameras.main.worldView.height,
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-70, -20),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(125, 175),
-                                                lifespan: 2500
-                                            };
-                                            case "top": return {
-                                                x: Object(I.l)(0, scene.scene.cameras.main.worldView.width),
-                                                y: -50,
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: 90,
-                                                velocity: Object(I.l)(0, 50),
-                                                gravity: 700,
-                                                angVelocity: Object(I.l)(-150, 150),
-                                                lifespan: 2500
-                                            };
-                                            case "right-shower": return {
-                                                x: scene.scene.cameras.main.worldView.width,
-                                                y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-180, -130),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(-175, -125),
-                                                lifespan: 2500
-                                            };
-                                            case "left-shower": return {
-                                                x: 0,
-                                                y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-50, 0),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(125, 175),
-                                                lifespan: 2500
-                                            };
-                                            case "right-diamond": {
-                                                var a = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
-                                                return {
+                                            }),
+                                            runChildUpdate: !0
+                                        });
+                                        this.nextParticle = 0;
+                                        this.numExplosions = 0;
+                                        this.game.events.on("start-particles", (t) => {
+                                            scene.rarity = t;
+                                            this.numExplosions = "Uncommon" === t ? 75 : "Rare" === t ? 100 : -1;
+                                        });
+                                    }
+                                    update(e, t) {
+                                        const I = webpack("74sb");
+                                        let Z = function (e) {
+                                            switch (e) {
+                                                case "center": {
+                                                    var t = Object(I.l)(-115, -65);
+                                                    return {
+                                                        x: scene.scene.cameras.main.worldView.width / 2,
+                                                        y: scene.scene.cameras.main.worldView.height / 2,
+                                                        scale: Object(I.l)(.7, 1),
+                                                        angle: t,
+                                                        velocity: Object(I.l)(600, 750),
+                                                        gravity: 700,
+                                                        angVelocity: (t > -90 ? 1 : -1) * Object(I.l)(125, 175),
+                                                        lifespan: 2500
+                                                    }
+                                                }
+                                                case "right-bottom": return {
                                                     x: scene.scene.cameras.main.worldView.width,
-                                                    y: a,
+                                                    y: scene.scene.cameras.main.worldView.height,
                                                     scale: Object(I.l)(.7, 1),
-                                                    angle: a > scene.scene.cameras.main.worldView.height / 2 ? -150 : -210,
+                                                    angle: Object(I.l)(-160, -110),
                                                     velocity: Object(I.l)(600, 750),
-                                                    gravity: 0,
+                                                    gravity: 500,
                                                     angVelocity: Object(I.l)(-175, -125),
                                                     lifespan: 2500
-                                                }
-                                            }
-                                            case "left-diamond": {
-                                                var n = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
-                                                return {
+                                                };
+                                                case "left-bottom": return {
                                                     x: 0,
-                                                    y: n,
+                                                    y: scene.scene.cameras.main.worldView.height,
                                                     scale: Object(I.l)(.7, 1),
-                                                    angle: n > scene.scene.cameras.main.worldView.height / 2 ? -30 : 30,
+                                                    angle: Object(I.l)(-70, -20),
                                                     velocity: Object(I.l)(600, 750),
-                                                    gravity: 0,
+                                                    gravity: 500,
                                                     angVelocity: Object(I.l)(125, 175),
                                                     lifespan: 2500
+                                                };
+                                                case "top": return {
+                                                    x: Object(I.l)(0, scene.scene.cameras.main.worldView.width),
+                                                    y: -50,
+                                                    scale: Object(I.l)(.7, 1),
+                                                    angle: 90,
+                                                    velocity: Object(I.l)(0, 50),
+                                                    gravity: 700,
+                                                    angVelocity: Object(I.l)(-150, 150),
+                                                    lifespan: 2500
+                                                };
+                                                case "right-shower": return {
+                                                    x: scene.scene.cameras.main.worldView.width,
+                                                    y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
+                                                    scale: Object(I.l)(.7, 1),
+                                                    angle: Object(I.l)(-180, -130),
+                                                    velocity: Object(I.l)(600, 750),
+                                                    gravity: 500,
+                                                    angVelocity: Object(I.l)(-175, -125),
+                                                    lifespan: 2500
+                                                };
+                                                case "left-shower": return {
+                                                    x: 0,
+                                                    y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
+                                                    scale: Object(I.l)(.7, 1),
+                                                    angle: Object(I.l)(-50, 0),
+                                                    velocity: Object(I.l)(600, 750),
+                                                    gravity: 500,
+                                                    angVelocity: Object(I.l)(125, 175),
+                                                    lifespan: 2500
+                                                };
+                                                case "right-diamond": {
+                                                    var a = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
+                                                    return {
+                                                        x: scene.scene.cameras.main.worldView.width,
+                                                        y: a,
+                                                        scale: Object(I.l)(.7, 1),
+                                                        angle: a > scene.scene.cameras.main.worldView.height / 2 ? -150 : -210,
+                                                        velocity: Object(I.l)(600, 750),
+                                                        gravity: 0,
+                                                        angVelocity: Object(I.l)(-175, -125),
+                                                        lifespan: 2500
+                                                    }
+                                                }
+                                                case "left-diamond": {
+                                                    var n = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
+                                                    return {
+                                                        x: 0,
+                                                        y: n,
+                                                        scale: Object(I.l)(.7, 1),
+                                                        angle: n > scene.scene.cameras.main.worldView.height / 2 ? -30 : 30,
+                                                        velocity: Object(I.l)(600, 750),
+                                                        gravity: 0,
+                                                        angVelocity: Object(I.l)(125, 175),
+                                                        lifespan: 2500
+                                                    }
+                                                }
+                                                default: return {};
+                                            }
+                                        };
+                                        if (scene.rarity && 0 !== this.numExplosions && (this.nextParticle -= t, this.nextParticle <= 0)) {
+                                            switch (scene.rarity) {
+                                                case "Uncommon": {
+                                                    for (let i = 0; i < 2; i++) {
+                                                        let n = scene.particles.get();
+                                                        n && n.spawn.apply(n, Object.values(Z("center")).concat(`uncommon-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Rare": {
+                                                    for (var o = 0; o < 2; o++) {
+                                                        var r = scene.particles.get();
+                                                        r && r.spawn.apply(r, Object.values(Z(o % 2 == 0 ? "left-bottom" : "right-bottom")).concat(`rare-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Epic": {
+                                                    for (var s = 0; s < 2; s++) {
+                                                        var i = scene.particles.get();
+                                                        i && i.spawn.apply(i, Object.values(Z(s % 2 == 0 ? "left-shower" : "right-shower")).concat(`epic-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Legendary": {
+                                                    for (var l = 0; l < 3; l++) {
+                                                        var c = scene.particles.get();
+                                                        c && c.spawn.apply(c, Object.values(Z("top")).concat(`legendary-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Chroma": {
+                                                    for (var u = 0; u < 3; u++) {
+                                                        var d = scene.particles.get();
+                                                        d && d.spawn.apply(d, Object.values(Z(u % 2 == 0 ? "left-diamond" : "right-diamond")).concat(`chroma-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
                                                 }
                                             }
-                                            default: return {};
+                                            this.nextParticle = 20;
+                                            this.numExplosions > 0 && (this.numExplosions = Math.max(this.numExplosions - 1, 0));
                                         }
-                                    };
-                                    if (scene.rarity && 0 !== this.numExplosions && (this.nextParticle -= t, this.nextParticle <= 0)) {
-                                        switch (scene.rarity) {
-                                            case "Uncommon": {
-                                                for (let i = 0; i < 2; i++) {
-                                                    let n = scene.particles.get();
-                                                    n && n.spawn.apply(n, Object.values(Z("center")).concat(`uncommon-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Rare": {
-                                                for (var o = 0; o < 2; o++) {
-                                                    var r = scene.particles.get();
-                                                    r && r.spawn.apply(r, Object.values(Z(o % 2 == 0 ? "left-bottom" : "right-bottom")).concat(`rare-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Epic": {
-                                                for (var s = 0; s < 2; s++) {
-                                                    var i = scene.particles.get();
-                                                    i && i.spawn.apply(i, Object.values(Z(s % 2 == 0 ? "left-shower" : "right-shower")).concat(`epic-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Legendary": {
-                                                for (var l = 0; l < 3; l++) {
-                                                    var c = scene.particles.get();
-                                                    c && c.spawn.apply(c, Object.values(Z("top")).concat(`legendary-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Chroma": {
-                                                for (var u = 0; u < 3; u++) {
-                                                    var d = scene.particles.get();
-                                                    d && d.spawn.apply(d, Object.values(Z(u % 2 == 0 ? "left-diamond" : "right-diamond")).concat(`chroma-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                        }
-                                        this.nextParticle = 20;
-                                        this.numExplosions > 0 && (this.numExplosions = Math.max(this.numExplosions - 1, 0));
                                     }
                                 }
-                            }
-                            return function (box) {
-                                if (window.location.pathname !== "/market") return alert("This must be ran on the market page");
-                                let { stateNode } = Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner;
-                                let packs = webpack('fGzD');
-                                packs = Object.keys(packs.a).reduce((obj, pack) => (obj.packs.includes(pack) && (obj.data[pack] = Object.fromEntries(packs.b(pack))), obj), { packs: Array.from(document.querySelectorAll('[class*="packShadow"]')).map(x => x.alt), data: {} }).data;
-                                if (packs[box]) {
-                                    function weighted(pack) {
-                                        let weights = [];
-                                        const items = Object.keys(packs[pack]);
-                                        for (const key of items) weights.push(packs[pack][key] + (weights[items.indexOf(key) - 1] || 0));
-                                        const choice = weights[weights.length - 1] * Math.random();
-                                        return items[weights.findIndex(w => w >= choice)];
-                                    }
-                                    const blook = weighted(box);
-                                    const allBlooks = Object.values(webpack.c).find(x => x.exports?.a?.Elephant).exports.a;
-                                    stateNode.setState({
-                                        loadingPack: false,
-                                        openPack: true,
-                                        unlockedBlook: blook,
-                                        tokens: stateNode.state.tokens,
-                                        newUnlock: true,
-                                        game: {
-                                            type: phaser.WEBGL,
-                                            parent: "phaser-market",
-                                            width: "100%",
-                                            height: "100%",
-                                            scale: { mode: phaser.Scale.NONE, autoCenter: phaser.Scale.CENTER_BOTH },
-                                            transparent: true,
-                                            physics: { default: "arcade" },
-                                            scene: new Particles(allBlooks[blook].rarity)
-                                        },
-                                        canOpen: true
-                                    });
-                                } else alert("I couldn't find that box!");
-                            }
+                                return function (box) {
+                                    if (window.location.pathname !== "/market") return alert("This must be ran on the market page");
+                                    let { stateNode } = Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner;
+                                    let packs = webpack('fGzD');
+                                    packs = Object.keys(packs.a).reduce((obj, pack) => (obj.packs.includes(pack) && (obj.data[pack] = Object.fromEntries(packs.b(pack))), obj), { packs: Array.from(document.querySelectorAll('[class*="packShadow"]')).map(x => x.alt), data: {} }).data;
+                                    if (packs[box]) {
+                                        function weighted(pack) {
+                                            let weights = [];
+                                            const items = Object.keys(packs[pack]);
+                                            for (const key of items) weights.push(packs[pack][key] + (weights[items.indexOf(key) - 1] || 0));
+                                            const choice = weights[weights.length - 1] * Math.random();
+                                            return items[weights.findIndex(w => w >= choice)];
+                                        }
+                                        const blook = weighted(box);
+                                        const allBlooks = Object.values(webpack.c).find(x => x.exports?.a?.Elephant).exports.a;
+                                        stateNode.setState({
+                                            loadingPack: false,
+                                            openPack: true,
+                                            unlockedBlook: blook,
+                                            tokens: stateNode.state.tokens,
+                                            newUnlock: true,
+                                            game: {
+                                                type: phaser.WEBGL,
+                                                parent: "phaser-market",
+                                                width: "100%",
+                                                height: "100%",
+                                                scale: { mode: phaser.Scale.NONE, autoCenter: phaser.Scale.CENTER_BOTH },
+                                                transparent: true,
+                                                physics: { default: "arcade" },
+                                                scene: new Particles(allBlooks[blook].rarity)
+                                            },
+                                            canOpen: true
+                                        });
+                                    } else alert("I couldn't find that box!");
+                                }
+                            } catch { }
                         })()
                     },
                     {
@@ -1133,273 +1179,278 @@
                             }
                         ],
                         run: (function () {
-                            let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]);
-                            let phaser = Object.values(webpack.c).find(x => x.exports?.Class).exports;
-                            let scene = {};
-                            class Particles extends phaser.Scene {
-                                constructor(rarity) {
-                                    super();
-                                    this.rarity = rarity.toLowerCase();
-                                }
-                                preload() {
-                                    switch (this.rarity) {
-                                        case "uncommon":
-                                            this.load.svg("uncommon-1", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_green.svg", { width: 25, height: 25 });
-                                            this.load.svg("uncommon-2", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_light_green.svg", { width: 25, height: 25 });
-                                            this.load.svg("uncommon-3", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/circle_dark_green.svg", { width: 25, height: 25 });
-                                            this.load.svg("uncommon-4", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_dark_green.svg", { width: 30, height: 30 });
-                                            this.load.svg("uncommon-5", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_light_green.svg", { width: 30, height: 30 });
-                                            this.load.svg("uncommon-6", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_light_green.svg", { width: 30, height: 30 });
-                                            this.load.svg("uncommon-7", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_green.svg", { width: 30, height: 30 });
-                                            break;
-                                        case "rare":
-                                            this.load.svg("rare-1", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_light_blue.svg", { width: 25, height: 25 });
-                                            this.load.svg("rare-2", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_dark_blue.svg", { width: 25, height: 25 });
-                                            this.load.svg("rare-3", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-4", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-5", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_light_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-6", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_light_blue.svg", { width: 30, height: 30 });
-                                            this.load.svg("rare-7", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/circle_dark_blue.svg", { width: 25, height: 25 });
-                                            break;
-                                        case "epic":
-                                            this.load.svg("epic-1", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/red.svg", { width: 25, height: 25 });
-                                            this.load.svg("epic-2", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/light_red.svg", { width: 25, height: 25 });
-                                            this.load.svg("epic-3", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-4", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_dark_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-5", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-6", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_light_red.svg", { width: 30, height: 30 });
-                                            this.load.svg("epic-7", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/circle_dark_red.svg", { width: 25, height: 25 });
-                                            break;
-                                        case "legendary":
-                                            this.load.svg("legendary-1", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-2", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_light_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-3", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-4", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_orange.svg", { width: 30, height: 30 });
-                                            this.load.svg("legendary-5", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_light_orange.svg", { width: 30, height: 30 });
-                                            this.load.svg("legendary-6", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_dark_orange.svg", { width: 25, height: 25 });
-                                            this.load.svg("legendary-7", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/triangle_dark_orange.svg", { width: 30, height: 30 });
-                                            break;
-                                        case "chroma":
-                                            this.load.svg("chroma-1", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_turquoise.svg", { width: 25, height: 25 });
-                                            this.load.svg("chroma-2", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_light_turquoise.svg", { width: 25, height: 25 });
-                                            this.load.svg("chroma-3", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_dark_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-4", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-5", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-6", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_light_turquoise.svg", { width: 30, height: 30 });
-                                            this.load.svg("chroma-7", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/circle_dark_turquoise.svg", { width: 25, height: 25 });
+                            try {
+                                let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]);
+                                let values = Object.values(webpack.c),
+                                    blooks = values.find(x => x.exports?.a?.Chick?.set).exports.a,
+                                    packs = values.find(x => x.exports.a?.Breakfast).exports.a,
+                                    allBlooks = Object.entries(blooks).reduce((a, [b, c]) => (packs[c.realSet || c.set] && (a[b] = c), a), {});
+                                let phaser = Object.values(webpack.c).find(x => x.exports?.Class).exports;
+                                let scene = {};
+                                class Particles extends phaser.Scene {
+                                    constructor(rarity) {
+                                        super();
+                                        this.rarity = rarity.toLowerCase();
                                     }
-                                }
-                                create() {
-                                    scene.scene = this;
-                                    scene.rarity = "";
-                                    scene.particles = this.physics.add.group({
-                                        classType: new phaser.Class({
-                                            Extends: phaser.GameObjects.Image,
-                                            initialize: function () {
-                                                phaser.GameObjects.Image.call(this, scene.scene, 0, 0, "uncommon-1");
-                                                this.setDepth(3);
-                                                this.lifespan = 0;
-                                            },
-                                            spawn: function (x, y, scale, velAngle, velSpeed, gravity, angle, lifespan, texture) {
-                                                this.setTexture(texture);
-                                                this.setActive(true);
-                                                this.setVisible(true);
-                                                this.setPosition(x, y);
-                                                this.setScale(scale);
-                                                this.targets = [];
-                                                scene.scene.physics.velocityFromAngle(velAngle, velSpeed, this.body.velocity);
-                                                this.body.setGravityY(gravity);
-                                                this.body.setAngularVelocity(angle);
-                                                this.lifespan = lifespan;
-                                            },
-                                            update: function (t, s) {
-                                                this.lifespan -= s;
-                                                if (this.lifespan > 0) return;
-                                                this.setActive(!1);
-                                                this.setVisible(!1);
-                                            }
-                                        }),
-                                        runChildUpdate: !0
-                                    });
-                                    this.nextParticle = 0;
-                                    this.numExplosions = 0;
-                                    this.game.events.on("start-particles", (t) => {
-                                        scene.rarity = t;
-                                        this.numExplosions = "Uncommon" === t ? 75 : "Rare" === t ? 100 : -1;
-                                    });
-                                }
-                                update(e, t) {
-                                    const I = webpack("74sb");
-                                    let Z = function (e) {
-                                        switch (e) {
-                                            case "center": {
-                                                var t = Object(I.l)(-115, -65);
-                                                return {
-                                                    x: scene.scene.cameras.main.worldView.width / 2,
-                                                    y: scene.scene.cameras.main.worldView.height / 2,
-                                                    scale: Object(I.l)(.7, 1),
-                                                    angle: t,
-                                                    velocity: Object(I.l)(600, 750),
-                                                    gravity: 700,
-                                                    angVelocity: (t > -90 ? 1 : -1) * Object(I.l)(125, 175),
-                                                    lifespan: 2500
+                                    preload() {
+                                        switch (this.rarity) {
+                                            case "uncommon":
+                                                this.load.svg("uncommon-1", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_green.svg", { width: 25, height: 25 });
+                                                this.load.svg("uncommon-2", "https://media.blooket.com/image/upload/v1658567787/Media/market/particles/square_light_green.svg", { width: 25, height: 25 });
+                                                this.load.svg("uncommon-3", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/circle_dark_green.svg", { width: 25, height: 25 });
+                                                this.load.svg("uncommon-4", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_dark_green.svg", { width: 30, height: 30 });
+                                                this.load.svg("uncommon-5", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_light_green.svg", { width: 30, height: 30 });
+                                                this.load.svg("uncommon-6", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/serpentine_light_green.svg", { width: 30, height: 30 });
+                                                this.load.svg("uncommon-7", "https://media.blooket.com/image/upload/v1658567785/Media/market/particles/triangle_green.svg", { width: 30, height: 30 });
+                                                break;
+                                            case "rare":
+                                                this.load.svg("rare-1", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_light_blue.svg", { width: 25, height: 25 });
+                                                this.load.svg("rare-2", "https://media.blooket.com/image/upload/v1658567765/Media/market/particles/square_dark_blue.svg", { width: 25, height: 25 });
+                                                this.load.svg("rare-3", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-4", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-5", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/triangle_light_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-6", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/serpentine_light_blue.svg", { width: 30, height: 30 });
+                                                this.load.svg("rare-7", "https://media.blooket.com/image/upload/v1658567763/Media/market/particles/circle_dark_blue.svg", { width: 25, height: 25 });
+                                                break;
+                                            case "epic":
+                                                this.load.svg("epic-1", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/red.svg", { width: 25, height: 25 });
+                                                this.load.svg("epic-2", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/light_red.svg", { width: 25, height: 25 });
+                                                this.load.svg("epic-3", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-4", "https://media.blooket.com/image/upload/v1658790239/Media/market/particles/serpentine_dark_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-5", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-6", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/triangle_light_red.svg", { width: 30, height: 30 });
+                                                this.load.svg("epic-7", "https://media.blooket.com/image/upload/v1658790237/Media/market/particles/circle_dark_red.svg", { width: 25, height: 25 });
+                                                break;
+                                            case "legendary":
+                                                this.load.svg("legendary-1", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-2", "https://media.blooket.com/image/upload/v1658567740/Media/market/particles/square_light_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-3", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-4", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_orange.svg", { width: 30, height: 30 });
+                                                this.load.svg("legendary-5", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/serpentine_light_orange.svg", { width: 30, height: 30 });
+                                                this.load.svg("legendary-6", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/circle_dark_orange.svg", { width: 25, height: 25 });
+                                                this.load.svg("legendary-7", "https://media.blooket.com/image/upload/v1658567738/Media/market/particles/triangle_dark_orange.svg", { width: 30, height: 30 });
+                                                break;
+                                            case "chroma":
+                                                this.load.svg("chroma-1", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_turquoise.svg", { width: 25, height: 25 });
+                                                this.load.svg("chroma-2", "https://media.blooket.com/image/upload/v1658790246/Media/market/particles/square_light_turquoise.svg", { width: 25, height: 25 });
+                                                this.load.svg("chroma-3", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_dark_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-4", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/serpentine_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-5", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-6", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/triangle_light_turquoise.svg", { width: 30, height: 30 });
+                                                this.load.svg("chroma-7", "https://media.blooket.com/image/upload/v1658790244/Media/market/particles/circle_dark_turquoise.svg", { width: 25, height: 25 });
+                                        }
+                                    }
+                                    create() {
+                                        scene.scene = this;
+                                        scene.rarity = "";
+                                        scene.particles = this.physics.add.group({
+                                            classType: new phaser.Class({
+                                                Extends: phaser.GameObjects.Image,
+                                                initialize: function () {
+                                                    phaser.GameObjects.Image.call(this, scene.scene, 0, 0, "uncommon-1");
+                                                    this.setDepth(3);
+                                                    this.lifespan = 0;
+                                                },
+                                                spawn: function (x, y, scale, velAngle, velSpeed, gravity, angle, lifespan, texture) {
+                                                    this.setTexture(texture);
+                                                    this.setActive(true);
+                                                    this.setVisible(true);
+                                                    this.setPosition(x, y);
+                                                    this.setScale(scale);
+                                                    this.targets = [];
+                                                    scene.scene.physics.velocityFromAngle(velAngle, velSpeed, this.body.velocity);
+                                                    this.body.setGravityY(gravity);
+                                                    this.body.setAngularVelocity(angle);
+                                                    this.lifespan = lifespan;
+                                                },
+                                                update: function (t, s) {
+                                                    this.lifespan -= s;
+                                                    if (this.lifespan > 0) return;
+                                                    this.setActive(!1);
+                                                    this.setVisible(!1);
                                                 }
-                                            }
-                                            case "right-bottom": return {
-                                                x: scene.scene.cameras.main.worldView.width,
-                                                y: scene.scene.cameras.main.worldView.height,
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-160, -110),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(-175, -125),
-                                                lifespan: 2500
-                                            };
-                                            case "left-bottom": return {
-                                                x: 0,
-                                                y: scene.scene.cameras.main.worldView.height,
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-70, -20),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(125, 175),
-                                                lifespan: 2500
-                                            };
-                                            case "top": return {
-                                                x: Object(I.l)(0, scene.scene.cameras.main.worldView.width),
-                                                y: -50,
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: 90,
-                                                velocity: Object(I.l)(0, 50),
-                                                gravity: 700,
-                                                angVelocity: Object(I.l)(-150, 150),
-                                                lifespan: 2500
-                                            };
-                                            case "right-shower": return {
-                                                x: scene.scene.cameras.main.worldView.width,
-                                                y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-180, -130),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(-175, -125),
-                                                lifespan: 2500
-                                            };
-                                            case "left-shower": return {
-                                                x: 0,
-                                                y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
-                                                scale: Object(I.l)(.7, 1),
-                                                angle: Object(I.l)(-50, 0),
-                                                velocity: Object(I.l)(600, 750),
-                                                gravity: 500,
-                                                angVelocity: Object(I.l)(125, 175),
-                                                lifespan: 2500
-                                            };
-                                            case "right-diamond": {
-                                                var a = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
-                                                return {
+                                            }),
+                                            runChildUpdate: !0
+                                        });
+                                        this.nextParticle = 0;
+                                        this.numExplosions = 0;
+                                        this.game.events.on("start-particles", (t) => {
+                                            scene.rarity = t;
+                                            this.numExplosions = "Uncommon" === t ? 75 : "Rare" === t ? 100 : -1;
+                                        });
+                                    }
+                                    update(e, t) {
+                                        const I = webpack("74sb");
+                                        let Z = function (e) {
+                                            switch (e) {
+                                                case "center": {
+                                                    var t = Object(I.l)(-115, -65);
+                                                    return {
+                                                        x: scene.scene.cameras.main.worldView.width / 2,
+                                                        y: scene.scene.cameras.main.worldView.height / 2,
+                                                        scale: Object(I.l)(.7, 1),
+                                                        angle: t,
+                                                        velocity: Object(I.l)(600, 750),
+                                                        gravity: 700,
+                                                        angVelocity: (t > -90 ? 1 : -1) * Object(I.l)(125, 175),
+                                                        lifespan: 2500
+                                                    }
+                                                }
+                                                case "right-bottom": return {
                                                     x: scene.scene.cameras.main.worldView.width,
-                                                    y: a,
+                                                    y: scene.scene.cameras.main.worldView.height,
                                                     scale: Object(I.l)(.7, 1),
-                                                    angle: a > scene.scene.cameras.main.worldView.height / 2 ? -150 : -210,
+                                                    angle: Object(I.l)(-160, -110),
                                                     velocity: Object(I.l)(600, 750),
-                                                    gravity: 0,
+                                                    gravity: 500,
                                                     angVelocity: Object(I.l)(-175, -125),
                                                     lifespan: 2500
-                                                }
-                                            }
-                                            case "left-diamond": {
-                                                var n = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
-                                                return {
+                                                };
+                                                case "left-bottom": return {
                                                     x: 0,
-                                                    y: n,
+                                                    y: scene.scene.cameras.main.worldView.height,
                                                     scale: Object(I.l)(.7, 1),
-                                                    angle: n > scene.scene.cameras.main.worldView.height / 2 ? -30 : 30,
+                                                    angle: Object(I.l)(-70, -20),
                                                     velocity: Object(I.l)(600, 750),
-                                                    gravity: 0,
+                                                    gravity: 500,
                                                     angVelocity: Object(I.l)(125, 175),
                                                     lifespan: 2500
+                                                };
+                                                case "top": return {
+                                                    x: Object(I.l)(0, scene.scene.cameras.main.worldView.width),
+                                                    y: -50,
+                                                    scale: Object(I.l)(.7, 1),
+                                                    angle: 90,
+                                                    velocity: Object(I.l)(0, 50),
+                                                    gravity: 700,
+                                                    angVelocity: Object(I.l)(-150, 150),
+                                                    lifespan: 2500
+                                                };
+                                                case "right-shower": return {
+                                                    x: scene.scene.cameras.main.worldView.width,
+                                                    y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
+                                                    scale: Object(I.l)(.7, 1),
+                                                    angle: Object(I.l)(-180, -130),
+                                                    velocity: Object(I.l)(600, 750),
+                                                    gravity: 500,
+                                                    angVelocity: Object(I.l)(-175, -125),
+                                                    lifespan: 2500
+                                                };
+                                                case "left-shower": return {
+                                                    x: 0,
+                                                    y: Object(I.l)(0, scene.scene.cameras.main.worldView.height),
+                                                    scale: Object(I.l)(.7, 1),
+                                                    angle: Object(I.l)(-50, 0),
+                                                    velocity: Object(I.l)(600, 750),
+                                                    gravity: 500,
+                                                    angVelocity: Object(I.l)(125, 175),
+                                                    lifespan: 2500
+                                                };
+                                                case "right-diamond": {
+                                                    var a = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
+                                                    return {
+                                                        x: scene.scene.cameras.main.worldView.width,
+                                                        y: a,
+                                                        scale: Object(I.l)(.7, 1),
+                                                        angle: a > scene.scene.cameras.main.worldView.height / 2 ? -150 : -210,
+                                                        velocity: Object(I.l)(600, 750),
+                                                        gravity: 0,
+                                                        angVelocity: Object(I.l)(-175, -125),
+                                                        lifespan: 2500
+                                                    }
+                                                }
+                                                case "left-diamond": {
+                                                    var n = Object(I.l)(0, scene.scene.cameras.main.worldView.height);
+                                                    return {
+                                                        x: 0,
+                                                        y: n,
+                                                        scale: Object(I.l)(.7, 1),
+                                                        angle: n > scene.scene.cameras.main.worldView.height / 2 ? -30 : 30,
+                                                        velocity: Object(I.l)(600, 750),
+                                                        gravity: 0,
+                                                        angVelocity: Object(I.l)(125, 175),
+                                                        lifespan: 2500
+                                                    }
+                                                }
+                                                default: return {};
+                                            }
+                                        };
+                                        if (scene.rarity && 0 !== this.numExplosions && (this.nextParticle -= t, this.nextParticle <= 0)) {
+                                            switch (scene.rarity) {
+                                                case "Uncommon": {
+                                                    for (let i = 0; i < 2; i++) {
+                                                        let n = scene.particles.get();
+                                                        n && n.spawn.apply(n, Object.values(Z("center")).concat(`uncommon-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Rare": {
+                                                    for (var o = 0; o < 2; o++) {
+                                                        var r = scene.particles.get();
+                                                        r && r.spawn.apply(r, Object.values(Z(o % 2 == 0 ? "left-bottom" : "right-bottom")).concat(`rare-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Epic": {
+                                                    for (var s = 0; s < 2; s++) {
+                                                        var i = scene.particles.get();
+                                                        i && i.spawn.apply(i, Object.values(Z(s % 2 == 0 ? "left-shower" : "right-shower")).concat(`epic-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Legendary": {
+                                                    for (var l = 0; l < 3; l++) {
+                                                        var c = scene.particles.get();
+                                                        c && c.spawn.apply(c, Object.values(Z("top")).concat(`legendary-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
+                                                }
+                                                case "Chroma": {
+                                                    for (var u = 0; u < 3; u++) {
+                                                        var d = scene.particles.get();
+                                                        d && d.spawn.apply(d, Object.values(Z(u % 2 == 0 ? "left-diamond" : "right-diamond")).concat(`chroma-${Object(I.m)(1, 8)}`))
+                                                    }
+                                                    break;
                                                 }
                                             }
-                                            default: return {};
+                                            this.nextParticle = 20;
+                                            this.numExplosions > 0 && (this.numExplosions = Math.max(this.numExplosions - 1, 0));
                                         }
-                                    };
-                                    if (scene.rarity && 0 !== this.numExplosions && (this.nextParticle -= t, this.nextParticle <= 0)) {
-                                        switch (scene.rarity) {
-                                            case "Uncommon": {
-                                                for (let i = 0; i < 2; i++) {
-                                                    let n = scene.particles.get();
-                                                    n && n.spawn.apply(n, Object.values(Z("center")).concat(`uncommon-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Rare": {
-                                                for (var o = 0; o < 2; o++) {
-                                                    var r = scene.particles.get();
-                                                    r && r.spawn.apply(r, Object.values(Z(o % 2 == 0 ? "left-bottom" : "right-bottom")).concat(`rare-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Epic": {
-                                                for (var s = 0; s < 2; s++) {
-                                                    var i = scene.particles.get();
-                                                    i && i.spawn.apply(i, Object.values(Z(s % 2 == 0 ? "left-shower" : "right-shower")).concat(`epic-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Legendary": {
-                                                for (var l = 0; l < 3; l++) {
-                                                    var c = scene.particles.get();
-                                                    c && c.spawn.apply(c, Object.values(Z("top")).concat(`legendary-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                            case "Chroma": {
-                                                for (var u = 0; u < 3; u++) {
-                                                    var d = scene.particles.get();
-                                                    d && d.spawn.apply(d, Object.values(Z(u % 2 == 0 ? "left-diamond" : "right-diamond")).concat(`chroma-${Object(I.m)(1, 8)}`))
-                                                }
-                                                break;
-                                            }
-                                        }
-                                        this.nextParticle = 20;
-                                        this.numExplosions > 0 && (this.numExplosions = Math.max(this.numExplosions - 1, 0));
                                     }
                                 }
-                            }
-                            return function (blook) {
-                                let i = document.createElement('iframe');
-                                document.body.append(i);
-                                window.alert = i.contentWindow.alert.bind(window);
-                                window.prompt = i.contentWindow.prompt.bind(window);
-                                i.remove();
-                                if (window.location.pathname == "/market") {
-                                    let { stateNode } = Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner;
-                                    stateNode.setState({
-                                        loadingPack: false,
-                                        openPack: true,
-                                        unlockedBlook: blook,
-                                        tokens: stateNode.state.tokens,
-                                        newUnlock: true,
-                                        game: {
-                                            type: phaser.WEBGL,
-                                            parent: "phaser-market",
-                                            width: "100%",
-                                            height: "100%",
-                                            scale: {
-                                                mode: phaser.Scale.NONE,
-                                                autoCenter: phaser.Scale.CENTER_BOTH
+                                return function (blook) {
+                                    let i = document.createElement('iframe');
+                                    document.body.append(i);
+                                    window.alert = i.contentWindow.alert.bind(window);
+                                    window.prompt = i.contentWindow.prompt.bind(window);
+                                    i.remove();
+                                    if (window.location.pathname == "/market") {
+                                        let { stateNode } = Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner;
+                                        stateNode.setState({
+                                            loadingPack: false,
+                                            openPack: true,
+                                            unlockedBlook: blook,
+                                            newUnlock: true,
+                                            game: {
+                                                type: phaser.WEBGL,
+                                                parent: "phaser-market",
+                                                width: "100%",
+                                                height: "100%",
+                                                scale: {
+                                                    mode: phaser.Scale.NONE,
+                                                    autoCenter: phaser.Scale.CENTER_BOTH
+                                                },
+                                                transparent: true,
+                                                physics: {
+                                                    default: "arcade"
+                                                },
+                                                scene: new Particles(allBlooks[blook].rarity)
                                             },
-                                            transparent: true,
-                                            physics: {
-                                                default: "arcade"
-                                            },
-                                            scene: new Particles(Object.entries(Object.values(webpack.c).find(x => Object.values(x.exports?.a || {})[0]?.set).exports.a).reduce((a, b) => (Object.values(webpack.c).find(x => x.exports.a?.Breakfast == 15).exports.a[b[1].set] && (a[b[0]] = b[1]), a), {})[blook].rarity)
-                                        },
-                                        canOpen: true
-                                    });
-                                } else alert("This can only be ran on the market page!");
-                            }
+                                            canOpen: true
+                                        });
+                                    } else alert("This can only be ran on the market page!");
+                                }
+                            } catch { }
                         })()
                     },
                     {
@@ -1678,7 +1729,7 @@
                     },
                     {
                         name: "Remove Hack",
-                        description: "",
+                        description: "Removes an attacking hack",
                         run: function () {
                             Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner.stateNode.setState({ hack: "" });
                         }
@@ -2293,7 +2344,6 @@
                                     w: stateNode.state.weight, f, s: true
                                 }
                             });
-                            alert(`Sent a ${f} distraction`);
                         }
                     },
                     {
@@ -2520,7 +2570,7 @@
                         }
                     },
                     {
-                        name: "Reset All Players' Gold (Testing)",
+                        name: "Reset All Players' Gold",
                         description: "Set's everyone else's gold to 0",
                         run: function () {
                             let i = document.createElement('iframe');
@@ -2531,7 +2581,7 @@
                             let count = 0;
                             props.liveGameController.getDatabaseVal("c", async (players) => {
                                 if (players) for (const player of Object.keys(players)) {
-                                    await props.liveGameController.setVal({
+                                    props.liveGameController.setVal({
                                         path: "c/".concat(props.client.name),
                                         val: {
                                             b: props.client.blook,
@@ -2540,6 +2590,7 @@
                                         }
                                     });
                                     count++;
+                                    await new Promise(r => setTimeout(r, 4000));
                                 };
                                 alert(`Reset ${count} players' gold!`);
                             });
@@ -2804,9 +2855,9 @@
                             } catch (e) {
                                 return alert("Invalid JSON provided");
                             }
-                            theme = { backgroundColor: "rgb(11, 194, 207)", infoColor: "#9a49aa", cheatList: "#9a49aa", defaultButton: "#9a49aa", disabledButton: "#A02626", enabledButton: "#47A547", textColor: "white", inputColor: "#7a039d", contentBackground: "rgb(64, 17, 95)", ...theme }
-                            localStorage.setItem("JODGUISettings", theme);
-                            theme = JSON.parse(theme);
+                            theme = { backgroundColor: "rgb(11, 194, 207)", infoColor: "#9a49aa", cheatList: "#9a49aa", defaultButton: "#9a49aa", disabledButton: "#A02626", enabledButton: "#47A547", textColor: "white", inputColor: "#7a039d", contentBackground: "rgb(64, 17, 95)", ...JSON.parse(theme) }
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify(theme)); */
+                            Settings.setItem("theme", theme);
                             for (const prop in theme) variables.sheet.cssRules[0].style.setProperty(`--${prop}`, theme[prop]);
                         }
                     },
@@ -2814,7 +2865,8 @@
                         name: "Export Settings",
                         description: "Export the current theme to JSON",
                         run: async function () {
-                            await navigator.clipboard.writeText(JSON.stringify(JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), null, 4));
+            /* // await navigator.clipboard.writeText(JSON.stringify(JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), null, 4)); */
+                            await navigator.clipboard.writeText(JSON.stringify(Settings.data.theme, null, 4));
                             prompt("Text copied to clipboard. (Paste below to test)");
                         }
                     },
@@ -2841,20 +2893,6 @@
                                         }
                                     },
                                     {
-                                        name: "Blue - Purple",
-                                        value: {
-                                            backgroundColor: "linear-gradient(162.5deg, rgba(0,183,255,1) 0%, rgba(128,0,255,1) 100%)",
-                                            infoColor: "#9a49aa",
-                                            cheatList: "#9a49aa",
-                                            defaultButton: "#9a49aa",
-                                            disabledButton: "#A02626",
-                                            enabledButton: "#47A547",
-                                            textColor: "white",
-                                            inputColor: "#7a039d",
-                                            contentBackground: "rgb(64, 17, 95)"
-                                        }
-                                    },
-                                    {
                                         name: "Blacket",
                                         value: {
                                             backgroundColor: "#4f4f4f",
@@ -2867,12 +2905,185 @@
                                             inputColor: "#3f3f3f",
                                             contentBackground: "#2f2f2f"
                                         }
-                                    }
+                                    },
+                                    {
+                                        name: "Skool.lol",
+                                        value: {
+                                            backgroundColor: "linear-gradient(90deg, rgba(104,45,140,1) 220px, rgba(237,30,121,1) 100%)",
+                                            cheatList: "#1e2124",
+                                            infoColor: "#1e2124",
+                                            defaultButton: "#36393e",
+                                            inputColor: "#1e2124",
+                                            enabledButton: "#9c9a9a",
+                                            textColor: "white",
+                                            disabledButton: "#171717",
+                                            contentBackground: "#292929"
+                                        }
+                                    },
+            /* // BACKGROUNDS */
+                                    {
+                                        name: "Blue - Purple Background",
+                                        value: {
+                                            backgroundColor: "linear-gradient(162.5deg, rgba(0,183,255,1) 220px, rgba(128,0,255,1) 100%)"
+                                        }
+                                    },
+                                    {
+                                        name: "Saint Patricks Background",
+                                        value: {
+                                            backgroundColor: "rgb(9, 148, 65)"
+                                        }
+                                    },
+                                    {
+                                        name: "Halloween Background",
+                                        value: {
+                                            backgroundColor: "rgb(41, 41, 41)"
+                                        }
+                                    },
+                                    {
+                                        name: "Fall Background",
+                                        value: {
+                                            backgroundColor: "rgb(224, 159, 62)"
+                                        }
+                                    },
+                                    {
+                                        name: "Winter Background",
+                                        value: {
+                                            backgroundColor: "linear-gradient(rgb(49, 170, 224), rgb(187, 221, 255))"
+                                        }
+                                    },
+            /* // GAMEMODE THEMES */
+                                    {
+                                        name: "Crypto Hack",
+                                        value: {
+                                            backgroundColor: "radial-gradient(#11581e,#041607)",
+                                            infoColor: "#1a1a1a",
+                                            cheatList: "#1a1a1a",
+                                            defaultButton: "rgb(88 175 88)",
+                                            disabledButton: "#A02626",
+                                            enabledButton: "#0b601b",
+                                            textColor: "white",
+                                            inputColor: "rgb(0 0 0 / 25%)",
+                                            contentBackground: "#11581e"
+                                        }
+                                    },
+                                    {
+                                        name: "Fishing Frenzy",
+                                        value: {
+                                            backgroundColor: "linear-gradient(180deg,#9be2fe 0,#67d1fb)",
+                                            infoColor: "#c8591e",
+                                            cheatList: "#c8591e",
+                                            defaultButton: "#ff751a",
+                                            disabledButton: "#bf0e0e",
+                                            enabledButton: "#2fb62f",
+                                            textColor: "white",
+                                            inputColor: "rgb(0 0 0 / 25%)",
+                                            contentBackground: "radial-gradient(#02b0ea 40%, #1d86ea)"
+                                        }
+                                    },
+                                    {
+                                        name: "Deceptive Dinos",
+                                        value: {
+                                            backgroundColor: "radial-gradient(rgba(220, 184, 86, 0), rgba(220, 184, 86, 0.4)), url(\"https://ac.blooket.com/play/111cb7e0ee6607ac3d1a13d534c0e0f1.png\"), #ead49a",
+                                            infoColor: "#af8942",
+                                            cheatList: "#af8942",
+                                            defaultButton: "#af8942",
+                                            disabledButton: "#A02626",
+                                            enabledButton: "#47A547",
+                                            textColor: "white",
+                                            inputColor: "rgb(0 0 0 / 10%)",
+                                            contentBackground: "radial-gradient(rgba(1,104,162,.6),rgba(24,55,110,.5)),radial-gradient(#2783b4 1.5px,#18376e 0) center / 24px 24px"
+                                        }
+                                    },
+                                    {
+                                        name: "Blook Rush",
+                                        value: {
+                                            backgroundColor: "repeating-linear-gradient(45deg,white,white 8%,#e6e6e6 0,#e6e6e6 16%)",
+                                            defaultButton: "#36c",
+                                            inputColor: "rgb(0 0 0 / 25%)",
+                                            infoColor: "#36c",
+                                            cheatList: "#36c",
+                                            contentBackground: "#888",
+                                            textColor: "white",
+                                            disabledButton: "#A02626",
+                                            enabledButton: "#47A547"
+                                        }
+                                    },
+                                    {
+                                        name: "Factory",
+                                        value: {
+                                            defaultButton: "#1563bf",
+                                            infoColor: "#a5aabe",
+                                            cheatList: "#a5aabe",
+                                            contentBackground: "#2d313d",
+                                            backgroundColor: "#3a3a3a",
+                                            enabledButton: "rgb(75, 194, 46)",
+                                            disabledButton: "#9a49aa",
+                                            inputColor: "rgb(0 0 0 / 25%)",
+                                            textColor: "white"
+                                        }
+                                    },
+                                    {
+                                        name: "Cafe",
+                                        value: {
+                                            backgroundColor: "linear-gradient(90deg,rgba(200,0,0,.5) 50%,transparent 0) center / 50px 50px,linear-gradient(rgba(200,0,0,0.5) 50%,transparent 0) white center / 50px 50px",
+                                            defaultButton: "#0bc2cf",
+                                            inputColor: "rgb(0 0 0 / 25%)",
+                                            infoColor: "#ac7339",
+                                            cheatList: "#ac7339",
+                                            contentBackground: "rgb(64, 64, 64)",
+                                            textColor: "white",
+                                            disabledButton: "#A02626",
+                                            enabledButton: "#47A547"
+                                        }
+                                    },
+                                    {
+                                        name: "Tower of Doom",
+                                        value: {
+                                            backgroundColor: "rgb(41 41 41)",
+                                            disabledButton: "rgb(151, 15, 5)",
+                                            defaultButton: "#333",
+                                            inputColor: "rgb(0 0 0 / 25%)",
+                                            contentBackground: "#404040",
+                                            enabledButton: "#4bc22e",
+                                            textColor: "white",
+                                            infoColor: "#9a49aa",
+                                            cheatList: "#9a49aa"
+                                        }
+                                    },
+                                    {
+                                        name: "Monster Brawl",
+                                        value: {
+                                            defaultButton: "rgb(45, 51, 67)",
+                                            backgroundColor: "rgb(78, 95, 124)",
+                                            inputColor: "rgb(0 0 0 / 25%)",
+                                            contentBackground: "linear-gradient(0deg,#374154,#4f5b74)",
+                                            infoColor: "#374154",
+                                            cheatList: "#374154",
+                                            textColor: "white",
+                                            enabledButton: "#47A547",
+                                            disabledButton: "#A02626"
+                                        }
+                                    },
+                                    {
+                                        name: "Tower Defense 2",
+                                        value: {
+                                            backgroundColor: "url(https://media.blooket.com/image/upload/v1676164454/Media/defense/backgroundTd1-02.svg) center / cover",
+                                            cheatList: "#a33c22",
+                                            infoColor: "#a33c22",
+                                            defaultButton: "#40b1d8",
+                                            inputColor: "#3e8cbe",
+                                            contentBackground: "#293c82",
+                                            enabledButton: "#47A547",
+                                            disabledButton: "#A02626",
+                                            textColor: "white"
+                                        }
+                                    },
                                 ]
                             }
                         ],
                         run: function (theme) {
-                            localStorage.setItem("JODGUISettings", JSON.stringify(theme));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), ...theme })); */
+                            Settings.setItem("theme", { ...Settings.data.theme, ...theme });
                             for (const prop in theme) variables.sheet.cssRules[0].style.setProperty(`--${prop}`, theme[prop]);
                         }
                     },
@@ -2885,13 +3096,46 @@
                                 name: "Percent scale",
                                 min: 25,
                                 max: 100,
-                                value: (settings.scale || 1) * 100
+                                value: (Settings.data.scale || 1) * 100
                             }
                         ],
                         run: function (scale) {
                             scale = Math.min(Math.max(scale, 25), 100);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), scale: scale / 100 }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), scale: scale / 100 })); */
+                            Settings.setItem("scale", scale / 100);
                             guiWrapper.style.transform = `scale(${(scale / 100)})`;
+                        }
+                    },
+                    {
+                        name: "Hide Keybind",
+                        description: "Change the hide keybind (Click button after input to change)",
+                        inputs: [
+                            {
+                                type: "function",
+                                name: "Input",
+                                function: onchange => createKeybindListener(({ shift, ctrl, alt, key }) => onchange(`${[ctrl && "Ctrl", shift && "Shift", alt && "Alt", key && key.toUpperCase()].filter(Boolean).join(' + ')}`))
+                            }
+                        ],
+                        run: function (hide) {
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), hide })); */
+                            Settings.setItem("hide", hide);
+                            controls.update(Settings.data.hide || { ctrl: true, key: "e" }, Settings.data.close || { ctrl: true, key: "x" });
+                        }
+                    },
+                    {
+                        name: "Close Keybind",
+                        description: "Change the quick close keybind (Click button after input to change)",
+                        inputs: [
+                            {
+                                type: "function",
+                                name: "Input",
+                                function: onchange => createKeybindListener(({ shift, ctrl, alt, key }) => onchange(`${[ctrl && "Ctrl", shift && "Shift", alt && "Alt", key && key.toUpperCase()].filter(Boolean).join(' + ')}`))
+                            }
+                        ],
+                        run: function (close) {
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), close })); */
+                            Settings.setItem("close", close);
+                            controls.update(Settings.data.hide || { ctrl: true, key: "e" }, Settings.data.close || { ctrl: true, key: "x" });
                         }
                     },
                     {
@@ -2903,7 +3147,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--backgroundColor", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), backgroundColor: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), backgroundColor: color })); */
+                            Settings.setItem("theme.backgroundColor", color);
                         }
                     },
                     {
@@ -2915,7 +3160,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--cheatList", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), cheatList: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), cheatList: color })); */
+                            Settings.setItem("theme.cheatList", color);
                         }
                     },
                     {
@@ -2927,7 +3173,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--infoColor", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), infoColor: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), infoColor: color })); */
+                            Settings.setItem("theme.infoColor", color);
                         }
                     },
                     {
@@ -2939,7 +3186,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--defaultButton", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), defaultButton: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), defaultButton: color })); */
+                            Settings.setItem("theme.defaultButton", color);
                         }
                     },
                     {
@@ -2950,8 +3198,9 @@
                             name: "Color"
                         }],
                         run: function (color) {
-                            variables.sheet.cssRules[0].style.setProperty("--enabledButton", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), enabledButton: color }));
+            /* // variables.sheet.cssRules[0].style.setProperty("--enabledButton", color); */
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), enabledButton: color })); */
+                            Settings.setItem("theme.enabledButton", color);
                         }
                     },
                     {
@@ -2963,7 +3212,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--disabledButton", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), disabledButton: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), disabledButton: color })); */
+                            Settings.setItem("theme.disabledButton", color);
                         }
                     },
                     {
@@ -2975,7 +3225,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--textColor", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), textColor: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), textColor: color })); */
+                            Settings.setItem("theme.textColor", color);
                         }
                     },
                     {
@@ -2987,7 +3238,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--inputColor", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), inputColor: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), inputColor: color })); */
+                            Settings.setItem("theme.inputColor", color);
                         }
                     },
                     {
@@ -2999,7 +3251,8 @@
                         }],
                         run: function (color) {
                             variables.sheet.cssRules[0].style.setProperty("--contentBackground", color);
-                            localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), contentBackground: color }));
+            /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), contentBackground: color })); */
+                            Settings.setItem("theme.contentBackground", color);
                         }
                     }
                 ],
@@ -3013,17 +3266,40 @@
                                 width: "95%",
                                 height: "370px",
                                 borderRadius: "7px",
-                                display: "flex",
+                                display: "block",
                                 alignItems: "center",
                                 justifyContent: "center"
                             }
-                        }, createElement("span", {
-                            innerText: "Join a game with alerts to use this tab\n(Gold Quest, Crypto Hack, Fishing Frenzy, Deceptive Dinos, Cafe, Factory)",
-                            style: { textAlign: "center" }
-                        })),
-                        addAlert: function (name, blook, message) {
-                            return this.element.firstChild.prepend(createElement("li", { style: { margin: "5px 5px 5px 5px" } }, createElement("img", {
-                                src: blook,
+                        }, createElement("ul", {
+                            className: "alertList",
+                            style: {
+                                margin: "10px 10px 0 10px",
+                                padding: "0",
+                                listStyleType: "none",
+                                display: "flex",
+                                flexDirection: "column-reverse",
+                                height: "355px",
+                                overflowY: "scroll",
+                                wordWrap: "break-word"
+                            }
+                        },
+                            createElement("li", {
+                                style: {
+                                    margin: "5px"
+                                }
+                            },
+                                createElement("span", {
+                                    style: { color: "var(--textColor)" },
+                                    innerText: "[LOG] GUI opened"
+                                })
+                            )
+                        )),
+                        addLog(message, color) {
+                            return this.element.firstChild.prepend(createElement("li", { style: { margin: "5px" } }, createElement("span", { style: { color: color || "var(--textColor)" }, innerHTML: "[LOG] " + message })));
+                        },
+                        addAlert(name, blook, message) {
+                            return this.element.firstChild.prepend(createElement("li", { style: { margin: "5px" } }, createElement("img", {
+                                src: blook || this.blookData?.Black?.url,
                                 alt: "blook",
                                 draggable: false,
                                 style: { height: "22.5px", margin: "0 10px -5px 0" }
@@ -3031,27 +3307,158 @@
                         },
                         connection: null,
                         data: {},
+                        updateLeaderboard(standings) {
+                            if (!this.leaderboardEl) this.addLeaderboard();
+            /* // this.element.parentElement.querySelector("#leaderboardContent") && this.element.parentElement.append(this.leaderboardEl); */
+                            this.leaderboard.innerHTML = "";
+                            for (const { blook, name, value } of standings) {
+                                this.leaderboard.append(createElement("li", {
+                                    style: {
+                                        fontSize: "2rem",
+                                        paddingInline: "72px 15px",
+                                        paddingBlock: "1.25px",
+                                        position: "relative"
+                                    }
+                                },
+                                    createElement("img", {
+                                        src: this.blookData?.[blook]?.url || this.blookData.Black.url,
+                                        alt: blook,
+                                        draggable: false,
+                                        style: {
+                                            height: "45px",
+                                            position: "absolute",
+                                            left: "15px"
+                                        }
+                                    }), name, createElement("span", {
+                                        innerText: this.parseNumber(parseInt(value)),
+                                        style: { float: "right" }
+                                    })
+                                ));
+                            }
+                        },
+                        parseNumber(num = 0) {
+                            var parsed = num;
+                            if (num < 1e3) return parsed.toString();
+                            const coeffs = ["", "K", "M", "B", "T"];
+                            const coeffIndex = Math.floor((num.toString().length - 1) / 3);
+                            if (coeffIndex < coeffs.length) {
+                                let rounded = 0;
+                                for (let i = 3; i >= 1; i--) {
+                                    rounded = parseFloat((0 !== coeffIndex ? num / Math.pow(1e3, coeffIndex) : num).toPrecision(i));
+                                    if (rounded.toString().replace(/[^a-zA-Z 0-9]+/g, "").length <= 3) break;
+                                }
+                                rounded % 1 != 0 && (rounded = rounded.toFixed(1));
+                                parsed = rounded + coeffs[coeffIndex];
+                            } else {
+                                let rounded = num, tens = 0;
+                                for (; rounded >= 100; tens++) rounded = Math.floor(rounded / 10);
+                                let exponents = "";
+                                let powers = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"];
+                                for (const n of (tens + 1).toString().split("")) exponents += powers[Number(n)];
+                                parsed = `${rounded / 10} × 10${exponents}`;
+                            }
+                            return parsed;
+                        },
+                        addLeaderboard() {
+                            this.blookData ||= Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find(x => x.exports?.a?.Alice && x.exports?.a?.Alien).exports.a;
+                            this.element.append(this.leaderboardEl = createElement("div", {
+                                id: "leaderboardContent",
+                                style: {
+                                    position: "absolute",
+                                    inset: "110% 0px"
+            /* // display: "flex", */
+            /* // alignItems: "stretch, */
+            /* // margin: "50px", */
+            /* // backgroundColor: "#8000ff" */
+                                }
+                            },
+                                createElement("div", {
+                                    style: {
+                                        alignItems: "center",
+                                        boxSizing: "border-box",
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        flexWrap: "wrap",
+                                        justifyContent: "space-evenly",
+                                        padding: "20px 5px 20px",
+                                        position: "relative",
+                                        width: "100%",
+                                        fontFamily: "Nunito, sans-serif",
+                                        fontWeight: "400",
+                                        color: "var(--textColor)",
+                                        background: "var(--contentBackground)",
+                                        boxShadow: "inset 0 -6px rgb(0 0 0 / 20%)",
+                                        borderRadius: "7px"
+                                    }
+                                },
+                                    createElement("div", {
+                                        className: "headerText",
+                                        style: {
+                                            boxSizing: "border-box",
+                                            display: "block",
+                                            height: "45px",
+                                            left: "-10px",
+                                            padding: "4px 4px 8px",
+                                            position: "absolute",
+                                            top: "-28px",
+                                            backgroundColor: "#ef7426",
+                                            boxShadow: "0 4px rgb(0 0 0 / 20%), inset 0 -4px rgb(0 0 0 / 20%)",
+                                            borderRadius: "7px"
+                                        }
+                                    },
+                                        createElement("div", {
+                                            style: {
+                                                alignItems: "center",
+                                                boxSizing: "border-box",
+                                                display: "flex",
+                                                height: "100%",
+                                                justifyContent: "center",
+                                                padding: "0 15px",
+                                                width: "100%",
+                                                fontFamily: "Titan One, sans-serif",
+                                                fontSize: "26px",
+                                                fontWeight: "400",
+                                                textShadow: "-1px -1px 0 #646464, 1px -1px 0 #646464, -1px 1px 0 #646464, 2px 2px 0 #646464",
+                                                color: "white",
+                                                background: "linear-gradient(#fcd843,#fcd843 50%,#feb31a 50.01%,#feb31a)",
+                                                borderRadius: "5px"
+                                            },
+                                            innerText: "Leaderboard"
+                                        })
+                                    ),
+                                    createElement("div", {
+                                        className: "alertContainer",
+                                        style: {
+                                            margin: "15px 15px 5px 15px",
+                                            backgroundColor: "rgb(0 0 0 / 50%)",
+                                            width: "95%",
+                                            height: "370px",
+                                            borderRadius: "7px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center"
+                                        }
+                                    }, (this.leaderboard = createElement("nl", {
+                                        className: "alertList",
+                                        style: {
+                                            marginTop: "10px",
+                                            padding: "0",
+                                            listStyleType: "decimal",
+                                            width: "100%",
+                                            height: "355px",
+                                            overflowY: "scroll",
+                                            wordWrap: "break-word"
+                                        }
+                                    })))
+                                )
+                            ))
+                        },
                         async connect() {
                             try {
                                 const { stateNode } = Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner;
-                                if (!stateNode?.props?.liveGameController?._liveGameCode || !["gold", "hack", "fishing", "dino", "cafe", "factory"].includes(this.getGamemode())) return false;
-                                this.element.innerHTML = "";
-                                this.element.style.display = "block";
-                                this.element.append(createElement("ul", {
-                                    className: "alertList",
-                                    style: {
-                                        margin: "10px 10px 0 10px",
-                                        padding: "0",
-                                        listStyleType: "none",
-                                        display: "flex",
-                                        flexDirection: "column-reverse",
-                                        height: "355px",
-                                        overflowY: "scroll",
-                                        wordWrap: "break-word"
-                                    }
-                                }));
+                                if (!stateNode?.props?.liveGameController?._liveGameCode) return false;
                                 this.connection = await stateNode.props.liveGameController.getDatabaseRef("c");
-                                const blooks = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find(x => x.exports?.a?.Alice && x.exports?.a?.Alien).exports.a;
+                                const blooks = this.blookData = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find(x => x.exports?.a?.Alice && x.exports?.a?.Alien).exports.a;
                                 const gamemode = this.getGamemode();
                                 const factoryGlitches = { lb: "Lunch Break", as: "Ad Spam", e37: "Error 37", nt: "Night Time", lo: "#LOL", j: "Jokester", sm: "Slow Mo", dp: "Dance Party", v: "Vortex", r: "Reverse", f: "Flip", m: "Micro" }
                                 this.connection.on("value", snapshot => {
@@ -3059,28 +3466,44 @@
                                     if (!players || !this.diffObjects(this.data, players)) return;
                                     const added = this.diffObjects(this.data, players)
                                     this.data = players;
-            /* // this.addAlert(`Removed: ${JSON.stringify(removed)}\nAdded: ${JSON.stringify(added)}`); */
+                                    let standings;
                                     switch (gamemode) {
+                                        case "racing":
+                                            standings = Object.entries(players).map(([name, { b, pr }]) => ({ name, blook: b, value: pr || 0 }));
+                                        case "classic":
+                                            standings = Object.entries(players).map(([name, { b, p }]) => ({ name, blook: b, value: p || 0 }));
+                                        case "royale":
+                                            standings = Object.entries(players).map(([name, { b, e }]) => ({ name, blook: b, value: e || 0 }));
+                                        case "workshop":
+                                            standings = Object.entries(players).map(([name, { b, t }]) => ({ name, blook: b, value: t || 0 }));
+                                        case "brawl":
+                                            standings = Object.entries(players).map(([name, { b, xp }]) => ({ name, blook: b, value: xp || 0 }));
+                                        case "defense":
+                                        case "defense2":
+                                            standings = Object.entries(players).map(([name, { b, d }]) => ({ name, blook: b, value: d || 0 }));
                                         case "gold":
                                             for (const player in added) {
                                                 if (!added[player].tat) continue;
                                                 const [tat, amount] = added[player].tat.split(':');
                                                 if (amount == "swap") this.addAlert(player, blooks[players[player].b]?.url, `just swapped with ${tat}`);
-                                                else this.addAlert(player, blooks[players[player].b]?.url, `just took ${amount} gold from ${tat}`);
+                                                else this.addAlert(player, blooks[players[player].b]?.url, `just took ${this.parseNumber(parseInt(amount))} gold from ${tat}`);
                                             }
+                                            standings = Object.entries(players).map(([name, { b, g }]) => ({ name, blook: b, value: g || 0 }));
                                             break;
                                         case "hack":
                                             for (const player in added) {
                                                 if (!added[player].tat) continue;
                                                 const [tat, amount] = added[player].tat.split(':');
-                                                this.addAlert(player, blooks[players[player].b]?.url, `just took ${amount} crypto from ${tat}`);
+                                                this.addAlert(player, blooks[players[player].b]?.url, `just took ${this.parseNumber(parseInt(amount))} crypto from ${tat}`);
                                             }
+                                            standings = Object.entries(players).map(([name, { b, cr }]) => ({ name, blook: b, value: cr || 0 }));
                                             break;
                                         case "fishing":
                                             for (const player in added) {
                                                 if (added[player].f == "Frenzy") this.addAlert(player, blooks[players[player].b]?.url, `just started a frenzy`);
                                                 else if (added[player].s) this.addAlert(player, blooks[players[player].b]?.url, `just sent a ${added[player].f} distraction`);
                                             }
+                                            standings = Object.entries(players).map(([name, { b, w }]) => ({ name, blook: b, value: w || 0 }));
                                             break;
                                         case "dino":
                                             for (const player in added) {
@@ -3089,6 +3512,7 @@
                                                 if (caught == "true") this.addAlert(player, blooks[players[player].b]?.url, `just caught ${tat} CHEATING!`);
                                                 else this.addAlert(player, blooks[players[player].b]?.url, `investigated ${tat}`);
                                             }
+                                            standings = Object.entries(players).map(([name, { b, f }]) => ({ name, blook: b, value: f || 0 }));
                                             break;
                                         case "cafe":
                                             for (const player in added) {
@@ -3096,19 +3520,21 @@
                                                 const [upgrade, level] = added[player].up.split(":");
                                                 if (level) this.addAlert(player, blooks[players[player].b]?.url, `upgraded ${upgrade} to level ${level}`);
                                             }
+                                            standings = Object.entries(players).map(([name, { b, ca }]) => ({ name, blook: b, value: ca || 0 }));
                                             break;
                                         case "factory":
                                             for (const player in added) {
                                                 const data = added[player];
                                                 if (data.g) this.addAlert(player, blooks[players[player].b]?.url, `activated the ${factoryGlitches[data.g]} glitch!`);
-                                                if (data.s) {
-                                                    const [amount, synergy] = data.s.split('-')
+                                                else if (data.s) {
+                                                    const [amount, synergy] = data.s.split('-');
                                                     this.addAlert(player, blooks[players[player].b]?.url, `has a ${amount} ${synergy} synergy!`);
-                                                }
-                                                else if (data.t) this.addAlert(player, blooks[players[player].b]?.url, `now has 10 Blooks!`);
+                                                } else if (data.t) this.addAlert(player, blooks[players[player].b]?.url, `now has 10 Blooks!`);
                                             }
+                                            standings = Object.entries(players).map(([name, { b, ca }]) => ({ name, blook: b, value: ca || 0 }));
                                             break;
                                     }
+                                    this.updateLeaderboard(standings.sort((a, b) => b.value - a.value));
                                 });
                             } catch {
                                 return false;
@@ -3174,6 +3600,8 @@
                                     return "cafe";
                                 case "/defense":
                                     return "defense";
+                                case "/play/defense2":
+                                    return "defense2";
                                 case "/kingdom":
                                     return "kingdom";
                                 default:
@@ -3263,14 +3691,39 @@
                 tooltip.style.top = (button.y - parent.y) + (button.height) + "px";
             });
             function keydown(e) {
-                if (!e.ctrlKey) return;
-                if (e.key.toLowerCase() == "e") {
+                let hideKey = Settings.data.hide || { ctrl: true, key: "e" };
+                let closeKey = Settings.data.close || { ctrl: true, key: "x" };
+                if (((hideKey.ctrl && e.ctrlKey) || (!hideKey.ctrl && !e.ctrlKey)) && ((hideKey.shift && e.shiftKey) || (!hideKey.shift && !e.shiftKey)) && ((hideKey.alt && e.altKey) || (!hideKey.alt && !e.altKey)) && e.key.toLowerCase() == hideKey.key) {
                     e.preventDefault();
                     guiWrapper.style.display = guiWrapper.style.display === "block" ? "none" : "block";
-                } else if (e.key.toLowerCase() == "x") {
+                } else if (((closeKey.ctrl && e.ctrlKey) || (!closeKey.ctrl && !e.ctrlKey)) && ((closeKey.shift && e.shiftKey) || (!closeKey.shift && !e.shiftKey)) && ((closeKey.alt && e.altKey) || (!closeKey.alt && !e.altKey)) && e.key.toLowerCase() == closeKey.key) {
                     e.preventDefault();
                     close();
                 }
+            }
+            function createKeybindListener(onpress, element = window) {
+                return new Promise(resolve => {
+                    const pressed = {};
+                    let shift, ctrl, alt, key;
+                    const keydown = e => {
+                        e.preventDefault();
+                        pressed[e.code] = true;
+                        shift ||= e.shiftKey;
+                        ctrl ||= e.ctrlKey;
+                        alt ||= e.altKey;
+                        if (!["shift", "control", "alt", "meta"].includes(e.key.toLowerCase())) key = e.key.toLowerCase();
+                        onpress?.({ shift, ctrl, alt, key });
+                    };
+                    const keyup = e => {
+                        delete pressed[e.code];
+                        if (Object.keys(pressed).length > 0) return;
+                        element.removeEventListener("keydown", keydown);
+                        element.removeEventListener("keyup", keyup);
+                        resolve({ shift, ctrl, alt, key });
+                    };
+                    element.addEventListener("keydown", keydown);
+                    element.addEventListener("keyup", keyup);
+                });
             }
         }
     });

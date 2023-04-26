@@ -19,7 +19,7 @@
     window.confirm = i.contentWindow.confirm.bind(window);
     i.remove();
     Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']]]).cache).find(x => x.exports?.a?.get).exports.a.get("https://" + (location.host.startsWith("dashboard") ? location.host + "/api/games" : "play.blooket.com/api/gamequestionsets") + "?gameId=6368436a976422d8a3f70cd7").then(x => parseInt(`0${x.data.questions.find(x => x.question == "../cheats/mobileGui.js")?.answers?.[0]}`)).then(async x => {
-        if (1678659460378 > x || confirm("This cheat is outdated and might be bugged, would you still like to run it? You can find regularly updated cheats here https://github.com/Minesraft2/Blooket-Cheats")) {
+        if (1682378606878 > x || confirm("This cheat is outdated and might be bugged, would you still like to run it? You can find regularly updated cheats here https://github.com/Minesraft2/Blooket-Cheats")) {
             /* Update Checker end */
             ; (() => {
                 let n = document.createElement('iframe');
@@ -143,7 +143,7 @@
                 bodyDiv.appendChild(footer);
                 footer.style.fontSize = '0.9rem';
                 footer.style.paddingBottom = '5px';
-                footer.innerHTML = (`<span><a target="blank" href="https://discord.gg/QznzysxvX4">Made by OneMinesraft2#5372</a></span>`);
+                footer.innerHTML = (`<span><a target="blank" href="https://discord.gg/QznzysxvX4">Made by OneMinesraft2#5394</a></span>`);
             
                 let cheats = ({
                     global: [
@@ -203,26 +203,30 @@
                             run: function () {
                                 if (!this.enabled) {
                                     this.enabled = true;
-                                    this.data = XMLHttpRequest.prototype.open;
-                                    XMLHttpRequest.prototype._original_open ||= XMLHttpRequest.prototype.open;
-                                    XMLHttpRequest.prototype.open = function () {
-                                        this.addEventListener("load", async function () {
-                                            try {
-                                                if (this.responseURL !== "https://dashboard.blooket.com/api/users/unlockblook") return;
-                                                var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
-                                                var { rarity } = webpackJsonp.push([[], { ['rarity']: (_, a, b) => { a.rarity = (blook) => b('MDrD').a[blook].rarity } }, [['rarity']]]);
-                                                const { unlockedBlook: blook } = JSON.parse(this.response);
-                                                const { data: { name, unlocks } } = await axios.get("https://dashboard.blooket.com/api/users");
-                                                if (!unlocks[blook] || ["Legendary", "Chroma", "Mystical"].includes(rarity(blook))) return;
-                                                await axios.put("https://dashboard.blooket.com/api/users/sellblook", { name, blook, numSold: 1 });
-                                                console.log(`Sold duplicate ${blook}`);
-                                            } catch { }
-                                        });
-                                        XMLHttpRequest.prototype._original_open.apply(this, arguments);
-                                    };
+                                    let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                        { sellBlook } = Object.values(webpack.c).find(x => x.exports.a?.sellBlook).exports.a,
+                                        { rarity } = webpackJsonp.push([[], { ['rarity']: (_, a, b) => { a.rarity = (blook) => b('MDrD').a[blook].rarity } }, [['rarity']]]),
+                                        axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a;
+                                    this.data = window.fetch;
+                                    window._fetch ||= window.fetch;
+                                    window.fetch = async function (url, data) {
+                                        const response = await _fetch(url, data);
+                                        return url.endsWith("PurchaseBlookBox") ? await new Promise(res => {
+                                            response.clone().text().then(async text => {
+                                                try {
+                                                    const blook = text.match(/[a-z A-Z]/g).join('');
+                                                    const { data: { unlocks } } = await axios.get("https://dashboard.blooket.com/api/users");
+                                                    if (!unlocks[blook] || ["Legendary", "Chroma", "Mystical"].includes(rarity(blook))) return;
+                                                    await sellBlook({ blook, numToSell: 1 });
+                                                    console.info(`Sold duplicate ${blook}`);
+                                                } catch { }
+                                            });
+                                            res(response);
+                                        }) : response;
+                                    }
                                 } else {
                                     this.enabled = false;
-                                    XMLHttpRequest.prototype.open = this.data;
+                                    window.fetch = this.data;
                                 }
                             }
                         },
@@ -259,20 +263,12 @@
                                 window.prompt = i.contentWindow.prompt.bind(window);
                                 window.confirm = i.contentWindow.confirm.bind(window);
                                 i.remove();
-                                var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
+                                let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                    axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a,
+                                    { purchaseBlookBox } = Object.values(webpack.c).find(x => x.exports.a?.purchaseBlookBox).exports.a;
             
-                                axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { name, tokens } }) => {
-                                    let prices = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find(x => x?.exports?.a?.Safari).exports.a || {
-                                        Medieval: 15,
-                                        Breakfast: 15,
-                                        Wonderland: 15,
-                                        Space: 20,
-                                        Bot: 20,
-                                        Aquatic: 20,
-                                        Safari: 20,
-                                        Dino: 25,
-                                        "Ice Monster": 25
-                                    };;
+                                axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { tokens } }) => {
+                                    let prices = Object.values(webpack.c).find(x => x?.exports?.a?.Safari).exports.a || { Medieval: 20, Breakfast: 20, Wonderland: 20, Blizzard: 25, Space: 20, Bot: 20, Aquatic: 20, Safari: 20, Dino: 25, "Ice Monster": 25, Outback: 25 }
                                     let box = prompt("Which box do you want to open? (ex: \"Ice Monster\")").split(' ').map(str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()).join(' ');
                                     if (!Object.keys(prices).map(x => x.toLowerCase()).includes(box.toLowerCase())) return alert("I couldn't find that box!");
             
@@ -285,13 +281,13 @@
                                     let error = false;
             
                                     for (let i = 0; i < amount; i++) {
-                                        await axios.put("https://dashboard.blooket.com/api/users/unlockblook", { name, box }).then(({ data: { unlockedBlook, tokens, isNewBlook } }) => {
+                                        await purchaseBlookBox({ boxName: box }).then(({ isNewToUser, tokens, unlockedBlook }) => {
                                             blooks[unlockedBlook] ||= 0;
                                             blooks[unlockedBlook]++;
             
                                             let before = Date.now();
             
-                                            if (alertBlooks) alert(`${unlockedBlook} (${i + 1}/${amount}) ${isNewBlook ? "NEW! " : ''}${tokens} tokens left`);
+                                            if (alertBlooks) alert(`${unlockedBlook} (${i + 1}/${amount}) ${isNewToUser ? "NEW! " : ''}${tokens} tokens left`);
             
                                             now += Date.now() - before;
                                         }).catch(e => error = true);
@@ -309,7 +305,7 @@
                                 document.body.append(i);
                                 window.alert = i.contentWindow.alert.bind(window);
                                 i.remove();
-                                document.querySelector('[class*="nameInput"]').maxLength = 120; /* 120 is the actual limit */
+                                document.querySelector('input[class*="nameInput"]').maxLength = 120; /* 120 is the actual limit */
                                 alert("Removed name length limit");
                             }
                         },
@@ -330,12 +326,14 @@
                                 window.alert = i.contentWindow.alert.bind(window);
                                 window.confirm = i.contentWindow.confirm.bind(window);
                                 i.remove();
-                                var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
-                                axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { name, unlocks } }) => {
+                                let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                    axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a,
+                                    { sellBlook } = Object.values(webpack.c).find(x => x.exports.a?.sellBlook).exports.a;
+                                axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { unlocks } }) => {
                                     let blooks = Object.entries(unlocks).filter(([blook, amount]) => amount > 1 && !["Legendary", "Chroma", "Mystical"].includes(webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b } }, [['1234']]]).webpack("MDrD").a[blook].rarity));
                                     if (confirm(`Are you sure you want to sell your uncommon to epic dupes?`)) {
                                         let now = Date.now();
-                                        for (const [blook, amount] of blooks) await axios.put("https://dashboard.blooket.com/api/users/sellblook", { name, blook, numSold: amount - 1 });
+                                        for (const [blook, amount] of blooks) await sellBlook({ blook, numToSell: amount - 1 });
                                         alert(`(${Date.now() - now}ms) Results:\n${blooks.map(([blook, amount]) => `    ${blook} ${amount - 1}`).join(`\n`)}`);
                                     }
                                 }).catch(() => alert('There was an error user data!'));
@@ -350,15 +348,17 @@
                                 window.alert = i.contentWindow.alert.bind(window);
                                 window.confirm = i.contentWindow.confirm.bind(window);
                                 i.remove();
-                                var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
-                                axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { name, unlocks } }) => {
+                                let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
+                                    axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a,
+                                    { sellBlook } = Object.values(webpack.c).find(x => x.exports.a?.sellBlook).exports.a;
+                                axios.get("https://dashboard.blooket.com/api/users").then(async ({ data: { unlocks } }) => {
                                     let blooks = Object.entries(unlocks).filter(x => x[1] > 1);
                                     if (confirm(`Are you sure you want to sell your dupes?`)) {
                                         let now = Date.now();
-                                        for (const [blook, amount] of blooks) await axios.put("https://dashboard.blooket.com/api/users/sellblook", { name, blook, numSold: amount - 1 });
+                                        for (const [blook, amount] of blooks) await sellBlook({ blook, numToSell: amount - 1 });
                                         alert(`(${Date.now() - now}ms) Results:\n${blooks.map(([blook, amount]) => `    ${blook} ${amount - 1}`).join(`\n`)}`);
                                     }
-                                }).catch(() => alert('There was an error user data!'));
+                                }).catch((e) => (alert('There was an error user data!'), console.info(e)));
                             }
                         },
             /* // { */
@@ -401,7 +401,7 @@
                                 document.body.append(i);
                                 window.prompt = i.contentWindow.prompt.bind(window);
                                 i.remove();
-                                
+            
                                 const id = prompt("Game ID:");
                                 const name = prompt("Name:");
                                 const amount = parseInt(prompt("Amount:"));
@@ -442,7 +442,7 @@
                                 document.body.append(i);
                                 window.alert = i.contentWindow.alert.bind(window);
                                 i.remove();
-                                if (!location.href.includes("play.blooket.com")) alert("This cheat only works on play.blooket.com");
+                                if (!location.href.includes("play.blooket.com")) (alert("This cheat only works on play.blooket.com, opening a new tab."), window.open("https://play.blooket.com/"));
                                 else {
                                     var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
                                     axios.post("https://play.blooket.com/api/playersessions/solo", { gameMode: "Factory" }).then(({ data: { t } }) => {
@@ -459,6 +459,8 @@
                             name: "Simulate Pack",
                             description: "Simulate opening a pack",
                             run: function () {
+                                let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]);
+                                let { stateNode } = Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner;
                                 let packs = webpack('fGzD');
                                 packs = Object.keys(packs.a).reduce((obj, pack) => (obj.packs.includes(pack) && (obj.data[pack] = Object.fromEntries(packs.b(pack))), obj), { packs: Array.from(document.querySelectorAll('[class*="packShadow"]')).map(x => x.alt), data: {} }).data;
                                 let box = prompt("Which box do you want to simulate? (ex: \"Ice Monster\")").split(' ').map(str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()).join(' ');
@@ -738,6 +740,10 @@
                                 i.remove();
                                 if (window.location.pathname == "/market") {
                                     let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]);
+                                    let values = Object.values(webpack.c),
+                                        blooks = values.find(x => x.exports?.a?.Chick?.set).exports.a,
+                                        packs = values.find(x => x.exports.a?.Breakfast).exports.a,
+                                        allBlooks = Object.entries(blooks).reduce((a, [b, c]) => (packs[c.realSet || c.set] && (a[b] = c), a), {});
                                     let { stateNode } = Object.values(document.querySelector('#app > div > div'))[1].children[0]._owner;
                                     let phaser = Object.values(webpack.c).find(x => x.exports?.Class).exports;
                                     let L = new function e() { this.scene = null, this.particles = null, this.rarity = null };
@@ -973,7 +979,6 @@
                                             }
                                         }
                                     }
-                                    const allBlooks = Object.entries(Object.values(webpack.c).find(x => Object.values(x.exports?.a || {})[0]?.set).exports.a).reduce((a, b) => (Object.values(webpack.c).find(x => x.exports.a?.Breakfast == 15).exports.a[b[1].realSet || b[1].set] && (a[b[0]] = b[1]), a), {});
                                     let blook = prompt("What blook do you want to simulate opening? (Case Sensitive)");
                                     if (Object.keys(allBlooks).includes(blook)) stateNode.setState({
                                         loadingPack: false,
@@ -2121,7 +2126,7 @@
                             }
                         },
                         {
-                            name: "Reset All Players' Gold (Testing)",
+                            name: "Reset All Players' Gold",
                             description: "Set's everyone else's gold to 0",
                             run: function () {
                                 let i = document.createElement('iframe');
@@ -2132,7 +2137,7 @@
                                 let count = 0;
                                 props.liveGameController.getDatabaseVal("c", async (players) => {
                                     if (players) for (const player of Object.keys(players)) {
-                                        await props.liveGameController.setVal({
+                                        props.liveGameController.setVal({
                                             path: "c/".concat(props.client.name),
                                             val: {
                                                 b: props.client.blook,
@@ -2141,6 +2146,7 @@
                                             }
                                         });
                                         count++;
+                                        await new Promise(r => setTimeout(r, 4000));
                                     }
                                     alert(`Reset ${count} players' gold!`);
                                 })
